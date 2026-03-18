@@ -2,12 +2,10 @@
 # Fit a piecewise SEM for trait trade-offs and biomass allocation
 # Author: Ryosuke Ito
 
-suppressPackageStartupMessages({
-  library(piecewiseSEM)
-  library(dplyr)
-  library(readr)
-  library(tidyr)
-})
+library(piecewiseSEM)
+library(dplyr)
+library(readr)
+library(tidyr)
 
 ### Input ###
 infile <- "Imp2507-HI.csv"
