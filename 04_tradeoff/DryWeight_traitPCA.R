@@ -2,9 +2,7 @@
 # Fit a GAM for total dry weight using PCA traits
 # Author: Ryosuke Ito
 
-suppressPackageStartupMessages({
-  library(mgcv)
-})
+library(mgcv)
 
 ### Input ###
 infile <- "Imp2507-PC.csv"
