@@ -141,11 +141,7 @@ Trait correlation and trade-off analyses.
 
 The analyses assume that the following software are available in the user environment unless otherwise specified.
 
-## Software and dependencies
-
-The analyses assume that the following software are available in the user environment unless otherwise specified.
-
-fastp  
+* fastp  
 bwa-mem2  
 samtools  
 bcftools  
