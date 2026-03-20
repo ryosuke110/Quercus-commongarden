@@ -142,28 +142,27 @@ Trait correlation and trade-off analyses.
 The analyses assume that the following software are available in the user environment unless otherwise specified.
 
 * fastp  
-bwa-mem2  
-samtools  
-bcftools  
-bedtools  
-vcftools  
-GATK 3.8 (used for indel realignment)
-Picard  
-bamUtil  
-ANGSD  
-Beagle 3.3.2 (pre-imputation)
-Beagle 5.5 (post-imputation)
-PLINK  
-ADMIXTURE  
-GEMMA  
-triangulaR  
-hzar  
-rehh  
-R  
-Python  
-PyMC  
-missForest  
-corrplot  
-piecewiseSEM  
-bgc-hm  
-ShinyGO
+* bwa-mem2  
+* samtools  
+* bcftools  
+* bedtools  
+* vcftools  
+* GATK 3.8
+* Picard  
+* bamUtil  
+* ANGSD  
+* Beagle 3.3 & 5.5
+* PLINK
+* ADMIXTURE  
+* GEMMA  
+* triangulaR  
+* hzar  
+* rehh  
+* R  
+* Python  
+* PyMC  
+* missForest  
+* corrplot  
+* piecewiseSEM  
+* bgc-hm  
+* ShinyGO
