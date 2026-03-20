@@ -1,4 +1,4 @@
-#### Quercus-commongarden
+# Quercus-commongarden
 # Analytical workflow for the oak hybrid zone study
 This repository contains analysis scripts used for the genomic and phenotypic analyses described in:
 
@@ -15,7 +15,7 @@ and climate variables from the NARO Agro-Meteorological Grid Square Data.
 
 The repository is organized by analysis modules corresponding to the main components of the study.
 
-# 01_variant_calling/  
+### 01_variant_calling/  
   Scripts for variant calling, filtering, and genotype imputation.
 
 - **Variantcalling_imputation.sh**
@@ -24,7 +24,7 @@ The repository is organized by analysis modules corresponding to the main compon
 - **fix-fcgene2.py**
   Utility script used to correct fcGENE output format.
   
-# 02_population_structure_hybridisation/  
+### 02_population_structure_hybridisation/  
   Scripts for genomic cline analyses and hybrid index inference.
 
 - **Genomic_cline_prep.R**
@@ -39,7 +39,7 @@ The repository is organized by analysis modules corresponding to the main compon
 - **Genomic_cline_hzar_elevation.R**
   Genomic cline modelling along elevation using the HZAR framework.
 
-# 03_seedling_performance/  
+### 03_seedling_performance/  
   Analyses of seedling performance traits as a function of hybrid index and environmental variables.
 
 - **Seedling_performance_prep.R**
@@ -60,7 +60,7 @@ The repository is organized by analysis modules corresponding to the main compon
 - **Gsw_HI.R**
   Stomatal conductance vs hybrid index.
 
-# 04_tradeoff/  
+### 04_tradeoff/  
 Trait correlation and trade-off analyses.
 
 - **DryWeight_traitPCA.R**
@@ -78,7 +78,7 @@ Trait correlation and trade-off analyses.
 - **TraitPCA_loading.R**
   Extraction and visualization of PCA loadings.
 
-# 05_admixture_mapping_selection_scan/
+### 05_admixture_mapping_selection_scan/
   Genome scans for loci associated with trait variation and signatures of selection.
 
 - **Run_admixture_mapping.sh**
@@ -96,7 +96,7 @@ Trait correlation and trade-off analyses.
 - **Extract_Admap_plus1.R**
   Integration of admixture mapping hits with other selection signals.
 
-# 06_genetic_scan/  
+### 06_genetic_scan/  
   Analyses of genetic coupling among trait-associated loci.
 
 - **Run_genetic_coupling.sh**
@@ -111,7 +111,7 @@ Trait correlation and trade-off analyses.
 - **extract_ld_pairs.py**
   Extraction of LD values for sampled SNP pairs.
 
-# 07_other_scripts/  
+### 07_other_scripts/  
   Additional analyses and utility scripts.
 
 - **Compare_fst_dxy.R**
@@ -132,7 +132,7 @@ Trait correlation and trade-off analyses.
 - **Run_leaf_EFA.R**
   Exploratory factor analysis of leaf traits.
 
-## README.md  
+### README.md  
   Documentation describing the structure and workflow of this repository.
 
 ---
