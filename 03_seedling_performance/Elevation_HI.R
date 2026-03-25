@@ -1,12 +1,14 @@
 #!/usr/bin/env Rscript
 # Fit individual- and site-level GAMs for fitness and hybrid index
 # Author: Ryosuke Ito
+# --- Input files (Dryad) ---
+infile: fitness2507.csv
 
 library(dplyr)
 library(mgcv)
 
 ### Input ###
-infile <- "fitness2507.csv"
+infile <- "fitness.csv"
 
 ### Read data ###
 df <- read.csv(infile, check.names = FALSE)
