@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # SNP calling and imputation pipeline
 # Author: Ryosuke Ito
+# --- Input files (Dryad) ---
+# REF: Qmon.fa
+# REFID: Qmon
+# OVERLAPCLIPPED_BAMLIST: all_overlapclipped_bam.txt
+# REALIGNED_BAMLIST: all_realigned_bam.txt
 
 set -euo pipefail
 
