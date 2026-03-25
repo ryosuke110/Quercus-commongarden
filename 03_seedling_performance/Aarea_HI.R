@@ -7,9 +7,7 @@ library(lubridate)
 library(mgcv)
 
 ### Input ###
-infile <- "LI6800.txt"
-rds_outfile <- "gam_A_li6800.rds"
-plot_outfile <- "gam_A_hi_effect.png"
+infile <- "Aarea.txt" # "LI6800.txt"
 
 ### Read data ###
 df6800 <- readr::read_tsv(
