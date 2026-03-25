@@ -1,6 +1,12 @@
 #!/usr/bin/env Rscript
 # Create a Spearman correlation plot for imputed trait data
 # Author: Ryosuke Ito
+#
+# --- Input file (Dryad) ---
+# infile: Imp2507-HI.csv
+#
+# --- Output file ---
+# plot_outfile: corplot_spearman_ellipse_sigdot.pdf
 
 library(tidyverse)
 library(Hmisc)
