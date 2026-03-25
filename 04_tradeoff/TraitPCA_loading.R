@@ -1,14 +1,21 @@
 #!/usr/bin/env Rscript
 # Run PCA on imputed trait data and export PC scores
 # Author: Ryosuke Ito
+#
+# --- Input file (Dryad) ---
+# infile: Imp2507-HI.csv
+#
+# --- Output file ---
+# score_outfile: Imp2507-PC.csv
+# loading_outfile: Imp2507-PC-loadings.csv
 
 library(dplyr)
 library(tibble)
 
 ### Input ###
-infile <- "Imp2507-HI.csv"
-score_outfile <- "Imp2507-PC.csv"
-loading_outfile <- "Imp2507-PC-loadings.csv"
+infile <- "phenotype-HI.csv"
+score_outfile <- "phenotype-PC.csv"
+loading_outfile <- "phenoype-PC-loadings.csv"
 
 trait_cols <- c(
   "Ht", "Dia", "CA", "TLN", "Dwroot", "Dwstem", "Dwleaf", "RSratio",
