@@ -3,14 +3,16 @@
 # Author: Ryosuke Ito
 
 # --- Input file (Dryad) ---
-# FITNESS_DATA: fitness2507.csv
+# infile: fitness2507.csv
+# --- Output file (Dryad)---
+# outfile: fitness2507.by_site.csv
 
 library(dplyr)
 
-FITNESS_DATA <- "fitness.csv"
+infile <- "fitness.csv"
 
 ## Read input data
-df <- read.csv(FITNESS_DATA)
+df <- read.csv(infile)
 
 ## Check required columns
 required_cols <- c("HybridIndex", "Germination", "Alive", "SamplingSite", "Elevation")
@@ -21,7 +23,6 @@ if (length(missing_cols) > 0) {
 
 ## Standardize column types
 df <- df %>%
-  rename(Germination = Germination) %>%
   mutate(
     HybridIndex = as.numeric(HybridIndex),
     Germination = as.integer(Germination),
@@ -45,3 +46,9 @@ summary_site <- df %>%
 ## Exclude sites with missing hybrid index
 summary_site_complete <- summary_site %>%
   filter(!is.na(mean_Hindex))
+
+### Write output ###
+outfile <- sub("\\.csv$", "", infile)
+outfile <- paste0(outfile, ".by_site.csv")
+write.csv(summary_site_complete, outfile, row.names = FALSE)
+cat("Saved:", outfile, "\n")
