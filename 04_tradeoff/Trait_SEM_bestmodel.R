@@ -1,6 +1,13 @@
 #!/usr/bin/env Rscript
 # Fit a piecewise SEM for trait trade-offs and biomass allocation
 # Author: Ryosuke Ito
+#
+# --- Input file (Dryad) ---
+# TRAIT_DATA: Imp2507-PC.csv
+#
+# --- Output file ---
+# coef_outfile: coefs_3rd.csv
+# r2_outfile: r2_3rd.csv
 
 library(piecewiseSEM)
 library(dplyr)
@@ -8,9 +15,9 @@ library(readr)
 library(tidyr)
 
 ### Input ###
-infile <- "Imp2507-HI.csv"
-coef_outfile <- "coefs_3rd.csv"
-r2_outfile <- "r2_3rd.csv"
+infile <- "phenotype-HI.csv"
+coef_outfile <- "coefs.csv"
+r2_outfile <- "r2.csv"
 
 ### Read data ###
 df <- readr::read_csv(infile, show_col_types = FALSE)
