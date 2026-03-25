@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # Compare cline models of hybrid index using PyMC
 # Author: Ryosuke Ito
+# --- Input files (Dryad) ---
+# admix_file: cline.with_transect.csv
 
 import pandas as pd
 import numpy as np
