@@ -8,7 +8,7 @@ library(dplyr)
 library(mgcv)
 
 ### Input ###
-infile <- "fitness2507.csv"
+infile <- "fitness.csv"
 
 ### Read data ###
 df <- read.csv(infile, check.names = FALSE)
