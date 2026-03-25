@@ -1,11 +1,13 @@
 #!/usr/bin/env Rscript
 # Infer clines along elevation and distance gradients using hzar
 # Author: Ryosuke Ito
+# --- Input files (Dryad) ---
+# infile: sample.cline.with_transect.csv
 
 library(hzar)
 
 ### Input ###
-infile <- "sample.cline.with_transect.csv"
+infile <- "cline.with_transect.csv"
 
 ### Read data ###
 dat <- read.csv(infile, check.names = FALSE)
