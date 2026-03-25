@@ -7,9 +7,7 @@ library(lubridate)
 library(mgcv)
 
 ### Input ###
-infile <- "LI600.txt"
-rds_outfile <- "gam_hi_min_long_rePlant.rds"
-plot_outfile <- "gam_hi_effect_min.png"
+infile <- "gsw.txt" #"LI600.txt"
 
 ### Read data ###
 df <- readr::read_tsv(
