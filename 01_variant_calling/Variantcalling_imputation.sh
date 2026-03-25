@@ -10,10 +10,10 @@
 set -euo pipefail
 
 # Adjust file paths according to your environment
-REF="Qmon.fa"
-REFID="Qmon"
-OVERLAPCLIPPED_BAMLIST="all_overlapclipped_bam.txt"
-REALIGNED_BAMLIST="all_realigned_bam.txt"
+REF="REF.fa"
+REFID="REF"
+OVERLAPCLIPPED_BAMLIST="overlapclipped_bam.txt"
+REALIGNED_BAMLIST="realigned_bam.txt"
 THREADS=12
 
 ## 1. Build blast database of Q. lobata ###
@@ -26,7 +26,7 @@ makeblastdb \
 
 blastp \
   -query "Quercus_mongolica_protein.pep" \
-  -db "Qlob-ref/Qlob_pe" \
+  -db "Qlob_pe" \
   -out "Qmon.p.10.outfmt7" \
   -evalue 1e-10 \
   -outfmt "7 qseqid sseqid length mismatch gapopen qstart qend sstart send evalue" \
