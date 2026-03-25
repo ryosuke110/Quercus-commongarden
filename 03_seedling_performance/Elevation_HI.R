@@ -2,7 +2,7 @@
 # Fit individual- and site-level GAMs for fitness and hybrid index
 # Author: Ryosuke Ito
 # --- Input files (Dryad) ---
-infile: fitness2507.csv
+# infile: fitness2507.csv
 
 library(dplyr)
 library(mgcv)
