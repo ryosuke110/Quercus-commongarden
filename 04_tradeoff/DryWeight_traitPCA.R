@@ -1,6 +1,11 @@
 #!/usr/bin/env Rscript
 # Fit a GAM for total dry weight using PCA traits
 # Author: Ryosuke Ito
+# --- Input files (Dryad) ---
+# infile: Imp2507-PC.csv
+#
+# --- Input files (Dryad) ---
+# rds_outfile: gam_dwtot_pc.rds
 
 library(mgcv)
 
