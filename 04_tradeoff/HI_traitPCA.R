@@ -1,12 +1,17 @@
 #!/usr/bin/env Rscript
 # Fit GAMs of principal components against hybrid index
 # Author: Ryosuke Ito
+# --- Input file (Dryad) ---
+# infile: Imp2507-PC.csv
+#
+# --- Output file ---
+# outfile: GAM-HI_PCs_mgcv.csv
 
 library(mgcv)
 
 ### Input ###
 infile <- "Imp2507-PC.csv"
-outfile <- "GAM-HI_PCs_mgcv.csv"
+outfile <- "GAM-HI_PCs.csv"
 n_pc <- 10
 
 ### Read data ###
@@ -30,11 +35,12 @@ dat_gam <- df[complete.cases(df[, need_cols]), need_cols]
 ### Fit GAMs ###
 result_df <- data.frame(
   PC = pc_cols,
+  n = NA_integer_,
+  HI_edf = NA_real_,
   HI_p = NA_real_,
   HI_p_adj = NA_real_,
   R2 = NA_real_,
   Dev_expl = NA_real_,
-  EDF_total = NA_real_,
   stringsAsFactors = FALSE
 )
 
@@ -52,10 +58,11 @@ for (i in seq_along(pc_cols)) {
   # Extract the p-value for the smooth term of HybridIndex
   ridx <- grep("^s\\(HybridIndex\\)$", rownames(fit_sum$s.table))
 
+  result_df$n[i] <- nrow(dat_gam)
+  result_df$HI_edf[i] <- fit_sum$s.table[ridx, "edf"]
   result_df$HI_p[i] <- fit_sum$s.table[ridx, "p-value"]
   result_df$R2[i] <- fit_sum$r.sq
   result_df$Dev_expl[i] <- fit_sum$dev.expl
-  result_df$EDF_total[i] <- sum(fit_sum$edf)
 }
 
 ### Adjust p-values ###
