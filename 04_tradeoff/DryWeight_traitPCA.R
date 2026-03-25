@@ -4,14 +4,16 @@
 # --- Input files (Dryad) ---
 # infile: Imp2507-PC.csv
 #
-# --- Input files (Dryad) ---
-# rds_outfile: gam_dwtot_pc.rds
+# --- Output files ---
+# parametric_outfile: gam_dwtot_pc_parametric.csv
+# model_outfile: gam_dwtot_pc_summary.csv
 
 library(mgcv)
 
 ### Input ###
-infile <- "Imp2507-PC.csv"
-rds_outfile <- "gam_dwtot_pc.rds"
+infile <- "phenotype-PC.csv"
+parametric_outfile <- "gam_dwtot_pc_parametric.csv"
+model_outfile <- "gam_dwtot_pc_summary.csv"
 
 ### Read data ###
 df <- read.csv(infile, check.names = FALSE)
@@ -37,8 +39,34 @@ fit <- gam(
   method = "REML"
 )
 
-summary(fit)
+fit_sum <- summary(fit)
 gam.check(fit)
 
-### Save model ###
-saveRDS(fit, rds_outfile)
+### Extract parametric terms ###
+parametric_df <- data.frame(
+  term = rownames(fit_sum$p.table),
+  estimate = fit_sum$p.table[, "Estimate"],
+  se = fit_sum$p.table[, "Std. Error"],
+  t_value = fit_sum$p.table[, "t value"],
+  p_value = fit_sum$p.table[, "Pr(>|t|)"],
+  row.names = NULL,
+  check.names = FALSE
+)
+
+### Extract smooth terms and model summary ###
+smooth_df <- data.frame(
+  term = rownames(fit_sum$s.table),
+  edf = fit_sum$s.table[, "edf"],
+  ref_df = fit_sum$s.table[, "Ref.df"],
+  F = fit_sum$s.table[, "F"],
+  p_value = fit_sum$s.table[, "p-value"],
+  n = nrow(df_model),
+  r_sq = fit_sum$r.sq,
+  dev_expl = fit_sum$dev.expl,
+  row.names = NULL,
+  check.names = FALSE
+)
+
+### Save output ###
+write.csv(parametric_df, parametric_outfile, row.names = FALSE)
+write.csv(smooth_df, model_outfile, row.names = FALSE)
