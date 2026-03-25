@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 # Estimate a logistic prior for species turnover along temperature
 # Author: Ryosuke Ito
+# --- Input files (Dryad) ---
+# infile: Quercus_climate.csv
 
 import pandas as pd
 import numpy as np
 import statsmodels.api as sm
 
 ### Input ###
-infile = "Quercus_climate.csv"
+infile = "climate.csv"
 
 ### Read data ###
 df = pd.read_csv(infile)
