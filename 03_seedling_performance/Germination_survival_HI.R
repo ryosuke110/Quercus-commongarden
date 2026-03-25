@@ -1,12 +1,14 @@
 #!/usr/bin/env Rscript
 # Fit site-level GAMs for germination and survival
 # Author: Ryosuke Ito
+# --- Input files (Dryad) ---
+# infile: fitness2507.csv
 
 library(dplyr)
 library(mgcv)
 
 ### Input ###
-infile <- "fitness2507.csv"
+infile <- "fitness.csv"
 
 ### Read data ###
 df <- read.csv(infile, check.names = FALSE)
