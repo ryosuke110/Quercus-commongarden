@@ -1,8 +1,16 @@
+#!/usr/bin/env Rscript
+# Fit a GAM for photosynthetic rate using LI-6800 measurements
+# Author: Ryosuke Ito
+# --- Input files (Dryad) ---
+# infile: fitness2507.csv
+
 library(dplyr)
 library(mgcv)
 
+infile = "fitness.csv"
+
 ## データ読み込み
-df <- read.csv("fitness2507.csv")
+df <- read.csv(infile)
 
 ## 型を整える（HybridIndexを数値に, Garminationを0/1に）
 df <- df %>%
