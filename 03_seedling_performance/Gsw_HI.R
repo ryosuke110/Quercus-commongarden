@@ -1,6 +1,8 @@
 #!/usr/bin/env Rscript
 # Fit a GAM for stomatal conductance with repeated LI-600 measurements
 # Author: Ryosuke Ito
+# --- Input files (Dryad) ---
+#infile: LI600.txt
 
 library(tidyverse)
 library(lubridate)
