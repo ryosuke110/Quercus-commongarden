@@ -1,9 +1,15 @@
 #!/usr/bin/env Rscript
 # Fit a GAM for dry weight against hybrid index
 # Author: Ryosuke Ito
+# --- Input files (Dryad) ---
+# infile: fitness2507.csv
 
 library(dplyr)
 library(mgcv)
+
+
+infile <- "fitness2507.csv"
+df <- read.csv(infile, check.names = FALSE)
 
 ### Prepare data ###
 df_clean <- df %>%
