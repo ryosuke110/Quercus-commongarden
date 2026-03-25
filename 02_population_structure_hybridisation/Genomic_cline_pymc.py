@@ -2,7 +2,7 @@
 # Compare cline models of hybrid index using PyMC
 # Author: Ryosuke Ito
 # --- Input files (Dryad) ---
-# admix_file: cline.with_transect.csv
+# admix_file: all-impb5.CGp.cline.with_transect.csv
 
 import pandas as pd
 import numpy as np
@@ -10,7 +10,7 @@ import pymc as pm
 import arviz as az
 
 ### Input ###
-admix_file = "all-impb5.CGp.cline.with_transect.csv"
+admix_file = "cline.with_transect.csv"
 
 ### Read data ###
 df = pd.read_csv(admix_file)
