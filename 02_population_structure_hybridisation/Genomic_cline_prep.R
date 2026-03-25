@@ -1,12 +1,14 @@
 #!/usr/bin/env Rscript
 # Calculate transect distance from geographic coordinates
 # Author: Ryosuke Ito
+# --- Input files (Dryad) ---
+# infile: sample.cline.csv
 
 library(sf)
 library(dplyr)
 
 ### Input ###
-infile   <- "sample.cline.csv"
+infile   <- "cline.csv"
 id_zero  <- "H29301"   # origin of transect distance
 crs_geo  <- 4326       # WGS84
 crs_prj  <- 6677       # projected CRS; adjust according to study region
