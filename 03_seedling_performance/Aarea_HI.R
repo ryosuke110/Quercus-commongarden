@@ -1,6 +1,8 @@
 #!/usr/bin/env Rscript
 # Fit a GAM for photosynthetic rate using LI-6800 measurements
 # Author: Ryosuke Ito
+# --- Input files (Dryad) ---
+# infile: LI6800.txt
 
 library(tidyverse)
 library(lubridate)
