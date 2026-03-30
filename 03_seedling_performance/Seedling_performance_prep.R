@@ -51,4 +51,3 @@ summary_site_complete <- summary_site %>%
 outfile <- sub("\\.csv$", "", infile)
 outfile <- paste0(outfile, ".by_site.csv")
 write.csv(summary_site_complete, outfile, row.names = FALSE)
-cat("Saved:", outfile, "\n")
