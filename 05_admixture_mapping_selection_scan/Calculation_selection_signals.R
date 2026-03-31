@@ -1,10 +1,22 @@
 #!/usr/bin/env Rscript
 # Calculate window-based population genetic statistics using GenoPop
 # Author: Ryosuke Ito
+# --- Input file ---
+# qmon_file: "Qmon.txt"
+# qser_file: "Qser.txt"
+# qhyb_file: "QhybNA.txt"
+#
+# --- Output file ---
+# fst_outfile <- "fst_10k.csv"
+# dxy＿outfile <- "dxy_10k.csv"
+# pi_qmon_outfile <- "pi_Qmon_10k.csv"
+# pi_qser_outfile <- "pi_Qser_10k.csv"
+# taj_qmon_outfile <- "tajD_Qmon_10k.csv"
+# taj_qser_outfile <- "tajD_Qser_10k.csv"
 
 library(GenoPop)
 
-### Input ###
+### Input & output ###
 vcf_file <- "all-impb5.CG.cl.vcf.gz"
 
 qmon_file <- "Qmon.txt"
