@@ -6,7 +6,7 @@
 # infile: Imp2507-HI.csv
 #
 # --- Output file ---
-# plot_outfile: corplot_spearman_ellipse_sigdot.pdf
+# corplot.pdf: corplot_spearman_ellipse_sigdot.pdf
 
 library(tidyverse)
 library(Hmisc)
@@ -14,7 +14,7 @@ library(corrplot)
 
 ### Input ###
 infile <- "Imp2507-HI.csv"
-plot_outfile <- "corplot_spearman_ellipse_sigdot.pdf"
+plot_outfile <- "corplot.pdf"
 
 drop_cols <- c("SampleID", "HybridIndex", "Elevation", "HeatShock", "Density")
 use_abs <- FALSE
