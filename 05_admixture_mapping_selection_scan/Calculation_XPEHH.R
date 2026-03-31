@@ -2,7 +2,7 @@
 # Calculate XP-EHH between Q. mongolica and Q. serrata across contigs
 # Author: Ryosuke Ito
 # --- Output file ---
-# xpehh.csv: xpehh_qmon_vs_qser.csv
+# outfile: xpehh_qmon_vs_qser.csv
 
 
 library(vcfR)
