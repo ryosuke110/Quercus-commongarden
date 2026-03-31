@@ -5,12 +5,12 @@
 set -euo pipefail
 
 ### Input ###
-VCF_IN="all-impb5.CG.cl.vcf.gz"
+VCF_IN="all.vcf.gz"
 OUTDIR="mvlmm_2510"
 
-KEEP_HYB="../Qhyb.txt"
-KEEP_P1="../Qmon.txt"
-KEEP_P2="../Qser.txt"
+KEEP_HYB="Qhyb.txt"
+KEEP_P1="Qmon.txt"
+KEEP_P2="Qser.txt"
 
 TRAIT_CSV="mvlmm_pwald_FDR05_hits.tsv"
 
@@ -27,9 +27,9 @@ DELTA_P_MAX="0.65"
 DELTA_P_STEP="0.05"
 
 ### Python helper scripts ###
-PY_ASSIGN="../assign_trait_maxpc.py"
-PY_SAMPLE="../sample_tradeoff_pairs.py"
-PY_EXTRACT="../extract_ld_pairs.py"
+PY_ASSIGN="assign_trait_maxpc.py"
+PY_SAMPLE="sample_tradeoff_pairs.py"
+PY_EXTRACT="extract_ld_pairs.py"
 
 mkdir -p "${OUTDIR}"
 cd "${OUTDIR}"
