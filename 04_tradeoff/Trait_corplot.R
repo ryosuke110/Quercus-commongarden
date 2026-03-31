@@ -6,7 +6,7 @@
 # infile: Imp2507-HI.csv
 #
 # --- Output file ---
-# corplot.pdf: corplot_spearman_ellipse_sigdot.pdf
+# plot_outfile: corplot_spearman_ellipse_sigdot.pdf
 
 library(tidyverse)
 library(Hmisc)
