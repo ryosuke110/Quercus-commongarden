@@ -1,16 +1,11 @@
 #!/usr/bin/env Rscript
 # Fit GAMs of principal components against hybrid index
 # Author: Ryosuke Ito
-# --- Input file (Dryad) ---
-# infile: Imp2507-PC.csv
-#
-# --- Output file ---
-# outfile: GAM-HI_PCs_mgcv.csv
 
 library(mgcv)
 
 ### Input ###
-infile <- "Imp2507-PC.csv"
+infile <- "phenotype-PC.csv"
 outfile <- "GAM-HI_PCs.csv"
 n_pc <- 10
 
