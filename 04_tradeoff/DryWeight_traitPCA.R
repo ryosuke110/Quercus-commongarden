@@ -16,7 +16,7 @@ parametric_outfile <- "gam_dwtot_pc_parametric.csv"
 model_outfile <- "gam_dwtot_pc_summary.csv"
 
 ### Read data ###
-df <- read.csv(infile, check.names = FALSE)
+df <- fread(infile)
 
 ### Prepare data ###
 pc_cols <- paste0("PC", 1:10)
