@@ -9,14 +9,16 @@ set -euo pipefail
 VCF_IN="all-impb5.CG.vcf"
 PREFIX="Quercus_CG"
 BED_PREFIX="Quercus_QC"
+
 KEEP_FILE="quercus_with_phenos.txt"
+RANDOM_FILE="randomeff_bimbam.txt"
+SNPANN_FILE="oak_snpannotation.txt"
+PHENO_FILE="Imp2507-PC-formatted.csv"
 
 BIMBAM_OUT="Quercus_bimbam_dosage.txt"
 BIMBAM_OUT_AD="Quercus_bimbam_dosage_ad.txt"
-SNPANN_OUT="oak_snpannotation.txt"
-PHENO_FILE="Imp2507-PC-formatted.csv"
 KIN_OUT="relmatrix_Q"
-GEMMA_OUT="oak_lmm_PCs_2508"
+GEMMA_OUT="oak_lmvmm_PCs"
 
 ### Prepare PLINK files for ADMIXTURE ###
 plink \
@@ -51,14 +53,14 @@ qctool \
   -og "${BIMBAM_OUT}"
 
 ### Add covariate information if needed ###
-cat "${BIMBAM_OUT}" randomeff_bimbam.txt > "${BIMBAM_OUT_AD}"
+cat "${BIMBAM_OUT}" "${RANDOM_FILE}" > "${BIMBAM_OUT_AD}"
 
 ### Calculate relatedness matrix ###
 gemma \
   -g "${BIMBAM_OUT_AD}" \
   -notsnp \
   -p "${PHENO_FILE}" \
-  -a "${SNPANN_OUT}" \
+  -a "${SNPANN_FILE}" \
   -gk 1 \
   -o "${KIN_OUT}"
 
@@ -66,7 +68,7 @@ gemma \
 gemma \
   -g "${BIMBAM_OUT_AD}" \
   -p "${PHENO_FILE}" \
-  -a "${SNPANN_OUT}" \
+  -a "${SNPANN_FILE}" \
   -k "output/${KIN_OUT}.cXX.txt" \
   -notsnp \
   -lmm 4 \
