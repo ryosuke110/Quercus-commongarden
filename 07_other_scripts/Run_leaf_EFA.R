@@ -6,20 +6,15 @@ library(Momocs)
 library(dplyr)
 
 ### Input ###
-infile_main <- "../All_filter.csv"
-infile_qc <- "../G_filter.csv"
-coord_dir <- "."
-outfile_pc <- "../PCAll-EFA.csv"
+infile <- "All_filter.csv"
+coord_dir <- "coord"
+outfile_pc <- "PCAll-EFA.csv"
 
 ### Read metadata ###
-dat_main <- read.csv(infile_main, sep = ",", check.names = FALSE)
-dat_qc <- read.csv(infile_qc, sep = ",", check.names = FALSE)
+dat_main <- read.csv(infile, sep = ",", check.names = FALSE)
 
 ### Prepare metadata ###
 dat_main_filt <- dat_main %>%
-  filter(quality == 1)
-
-dat_qc_filt <- dat_qc %>%
   filter(quality == 1)
 
 ### Helper function ###
@@ -45,7 +40,7 @@ run_efa_pca <- function(shape_data, nb_harmonics = 100) {
 
 ### Quality check ###
 # Inspect outlines visually in subsets if needed
-qc_files <- dat_qc_filt$file_name[1:50]
+qc_files <- dat_main_filt$file_name[1:50]
 qc_coord <- load_contours(qc_files, coord_dir = coord_dir)
 qc_shape <- prepare_shapes(qc_coord, slide_dir = "S")
 panel(qc_shape, names = TRUE)
@@ -56,17 +51,12 @@ shape_data <- prepare_shapes(coord_data, slide_dir = "S")
 pca_fit <- run_efa_pca(shape_data, nb_harmonics = 100)
 
 ### Plot PCA ###
-plot(
-  pca_fit,
-  col = ifelse(dat_main_filt$sp_idnt > 0, "#066292", "#BCD400"),
-  cex = 1
-)
+plot(pca_fit, col = "#066292", cex = 1)
 
 ### Save PCA scores ###
-write.table(
+write.csv(
   pca_fit$x[, 1:6],
   outfile_pc,
-  row.names = TRUE,
   col.names = TRUE
 )
 
