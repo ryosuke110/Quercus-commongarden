@@ -20,7 +20,6 @@ The repository is organized by analysis modules corresponding to the main compon
 
 - **Variantcalling_imputation.sh**
   Pipeline for SNP calling and genotype imputation.
-
 - **fix-fcgene2.py**
   Utility script used to correct fcGENE output format.
   
@@ -29,13 +28,10 @@ The repository is organized by analysis modules corresponding to the main compon
 
 - **Genomic_cline_prep.R**
   Preparation of genotype and metadata for cline analysis.
-
 - **Genomic_cline_prior.py**
   Estimation of priors for genomic cline models.
-
 - **Genomic_cline_pymc.py**
   Bayesian genomic cline estimation using PyMC.
-
 - **Genomic_cline_hzar_elevation.R**
   Genomic cline modelling along elevation using the HZAR framework.
 
@@ -44,19 +40,14 @@ The repository is organized by analysis modules corresponding to the main compon
 
 - **Seedling_performance_prep.R**
   Data preparation for seedling performance analyses.
-
 - **Aarea_HI.R**
   Leaf area vs hybrid index analysis.
-
 - **DryWeight_HI.R**
   Seedling biomass vs hybrid index analysis.
-
 - **Elevation_HI.R**
   Elevation effects on hybrid index.
-
 - **Germination_survival_HI.R**
   Germination and survival vs hybrid index analyses.
-
 - **Gsw_HI.R**
   Stomatal conductance vs hybrid index.
 
@@ -65,16 +56,12 @@ Trait correlation and trade-off analyses.
 
 - **DryWeight_traitPCA.R**
   PCA of biomass allocation traits.
-
 - **HI_traitPCA.R**
   Relationship between hybrid index and trait PCs.
-
 - **Trait_corplot.R**
   Correlation analysis among functional traits.
-
 - **Trait_SEM_bestmodel.R**
   Structural equation modelling of trait relationships.
-
 - **TraitPCA_loading.R**
   Extraction and visualization of PCA loadings.
 
@@ -83,16 +70,12 @@ Trait correlation and trade-off analyses.
 
 - **Run_admixture_mapping.sh**
   Admixture mapping using GEMMA.
-
 - **Calculation_selection_signals.R**
   Calculation of population genomic statistics (Fst, Dxy, π, Tajima's D).
-
 - **Calculation_XPEHH.R**
   XP-EHH selection scan.
-
 - **Outlier_detection.R**
   Detection of genomic outlier loci.
-
 - **Extract_Admap_plus1.R**
   Integration of admixture mapping hits with other selection signals.
 
@@ -101,13 +84,10 @@ Trait correlation and trade-off analyses.
 
 - **Run_genetic_coupling.sh**
   Main pipeline for genetic coupling analysis.
-
 - **assign_trait_maxpc.py**
   Assigns SNPs to the trait PC with the largest effect size.
-
 - **sample_tradeoff_pairs.py**
   Sampling of SNP pairs associated with different traits.
-
 - **extract_ld_pairs.py**
   Extraction of LD values for sampled SNP pairs.
 
@@ -116,19 +96,14 @@ Trait correlation and trade-off analyses.
 
 - **Compare_fst_dxy.R**
   Comparison of Fst and Dxy between GWAS outlier regions and background.
-
 - **Compare_local_cline.R**
   Comparison of local cline parameters between focal and background loci.
-
 - **Local_cline_fit.R**
   Estimation of local genomic clines.
-
 - **Run_local_clines_parallel.sh**
   Parallel execution of local cline estimation.
-
 - **Trait_imputation.R**
   Imputation of missing trait values.
-
 - **Run_leaf_EFA.R**
   Exploratory factor analysis of leaf traits.
 
