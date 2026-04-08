@@ -84,4 +84,3 @@ result_df <- rbindlist(lapply(metric_cols, function(col) {
 
 ### Save output ###
 fwrite(result_df, outfile, sep = "\t")
-print(result_df)
