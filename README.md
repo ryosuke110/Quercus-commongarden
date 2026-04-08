@@ -15,7 +15,7 @@ and climate variables from the NARO Agro-Meteorological Grid Square Data.
 
 The repository is organized by analysis modules corresponding to the main components of the study.
 
-### 01_variant_calling/  
+#### 01_variant_calling/  
   Scripts for variant calling, filtering, and genotype imputation.
 
 - **Variantcalling_imputation.sh**:
