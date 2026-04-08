@@ -1,12 +1,6 @@
 #!/usr/bin/env Rscript
 # Fit a GAM for total dry weight using PCA traits
 # Author: Ryosuke Ito
-# --- Input files (Dryad) ---
-# infile: Imp2507-PC.csv
-#
-# --- Output files ---
-# parametric_outfile: gam_dwtot_pc_parametric.csv
-# model_outfile: gam_dwtot_pc_summary.csv
 
 library(mgcv)
 
@@ -68,5 +62,5 @@ smooth_df <- data.frame(
 )
 
 ### Save output ###
-write.csv(parametric_df, parametric_outfile, row.names = FALSE)
-write.csv(smooth_df, model_outfile, row.names = FALSE)
+fwrite(parametric_df, parametric_outfile)
+fwrite(smooth_df, model_outfile)
