@@ -10,8 +10,10 @@ xpehh_file <- "xpehh_qmon_vs_qser.csv"
 admix_file <- "gemma_admixture_mapping.csv"
 fst_file <- "fst_10k.csv"
 dxy_file <- "dxy_10k.csv"
-pi_file <- "pi_all_10k.csv"
-taj_file <- "tajD_all_10k.csv"
+pi_qmon_file  <- "pi_Qmon_10k.csv"
+pi_qser_file  <- "pi_Qser_10k.csv"
+taj_qmon_file <- "tajD_Qmon_10k.csv"
+taj_qser_file <- "tajD_Qser_10k.csv"
 
 alpha_adm <- 0.05
 q_upper <- 0.99
@@ -22,8 +24,10 @@ xpehh_df <- fread(xpehh_file)
 admix_df <- fread(admix_file)
 fst_df <- fread(fst_file)
 dxy_df <- fread(dxy_file)
-pi_df <- fread(pi_file)
-taj_df <- fread(taj_file)
+pi_qmon_df  <- fread(pi_qmon_file)
+pi_qser_df  <- fread(pi_qser_file)
+taj_qmon_df <- fread(taj_qmon_file)
+taj_qser_df <- fread(taj_qser_file)
 
 ### Helper functions ###
 to_num <- function(x) suppressWarnings(as.numeric(as.character(x)))
@@ -78,11 +82,9 @@ dxy_hi <- dxy_df %>%
     end = as.integer(end)
   )
 
-### Extract pi and Tajima's D outliers ###
-thr_pi_qmon <- quantile(pi_df$pi[pi_df$pop == "Qmon"], q_lower, na.rm = TRUE)
-thr_pi_qser <- quantile(pi_df$pi[pi_df$pop == "Qser"], q_lower, na.rm = TRUE)
-thr_taj_qmon <- quantile(taj_df$tajD[taj_df$pop == "Qmon"], q_lower, na.rm = TRUE)
-thr_taj_qser <- quantile(taj_df$tajD[taj_df$pop == "Qser"], q_lower, na.rm = TRUE)
+### Extract pi outliers ###
+thr_pi_qmon <- quantile(pi_qmon_df$pi, q_lower, na.rm = TRUE)
+thr_pi_qser <- quantile(pi_qser_df$pi, q_lower, na.rm = TRUE)
 
 pi_qmon <- pi_df %>%
   filter(pop == "Qmon", is.finite(pi), pi <= thr_pi_qmon) %>%
@@ -99,6 +101,10 @@ pi_qser <- pi_df %>%
     start = as.integer(start) - 1L,
     end = as.integer(end)
   )
+
+### Extract Tajima's D outliers ###
+thr_taj_qmon <- quantile(taj_qmon_df$tajD, q_lower, na.rm = TRUE)
+thr_taj_qser <- quantile(taj_qser_df$tajD, q_lower, na.rm = TRUE)
 
 taj_qmon <- taj_df %>%
   filter(pop == "Qmon", is.finite(tajD), tajD <= thr_taj_qmon) %>%
