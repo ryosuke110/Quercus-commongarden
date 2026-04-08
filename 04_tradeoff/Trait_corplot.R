@@ -1,26 +1,20 @@
 #!/usr/bin/env Rscript
 # Create a Spearman correlation plot for imputed trait data
 # Author: Ryosuke Ito
-#
-# --- Input file (Dryad) ---
-# infile: Imp2507-HI.csv
-#
-# --- Output file ---
-# plot_outfile: corplot_spearman_ellipse_sigdot.pdf
 
 library(tidyverse)
 library(Hmisc)
 library(corrplot)
 
 ### Input ###
-infile <- "Imp2507-HI.csv"
+infile <- "phnotype-HI.csv"
 plot_outfile <- "corplot.pdf"
 
 drop_cols <- c("SampleID", "HybridIndex", "Elevation", "HeatShock", "Density")
 use_abs <- FALSE
 
 ### Read data ###
-dat <- read.csv(infile, header = TRUE, stringsAsFactors = FALSE, check.names = FALSE)
+dat <- fread(infile, data.table = FALSE)
 
 ### Prepare trait matrix ###
 # Exclude identifier and environmental columns, then keep numeric traits only
