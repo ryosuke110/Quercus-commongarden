@@ -10,7 +10,7 @@ outfile <- "GAM-HI_PCs.csv"
 n_pc <- 10
 
 ### Read data ###
-df <- read.csv(infile, check.names = FALSE)
+df <- fread(infile)
 
 ### Prepare data ###
 df <- df %>%
@@ -64,4 +64,4 @@ for (i in seq_along(pc_cols)) {
 result_df$HI_p_adj <- p.adjust(result_df$HI_p, method = "BH")
 
 ### Save output ###
-write.csv(result_df, outfile, row.names = FALSE)
+fwrite(result_df, outfile)
