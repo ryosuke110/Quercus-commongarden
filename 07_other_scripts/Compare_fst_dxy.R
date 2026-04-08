@@ -106,4 +106,3 @@ result_df <- data.table(
 
 ### Save output ###
 fwrite(result_df, result_outfile, sep = "\t")
-print(result_df)
