@@ -1,5 +1,5 @@
 # Quercus-commongarden
-# Analytical workflow for the oak hybrid zone study
+## Analytical workflow for the oak hybrid zone study
 This repository contains analysis scripts used for the genomic and phenotypic analyses described in:
 
 Ito et al. (in prep.)  
