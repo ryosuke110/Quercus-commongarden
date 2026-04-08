@@ -1,13 +1,6 @@
 #!/usr/bin/env Rscript
 # Run PCA on imputed trait data and export PC scores
 # Author: Ryosuke Ito
-#
-# --- Input file (Dryad) ---
-# infile: Imp2507-HI.csv
-#
-# --- Output file ---
-# score_outfile: Imp2507-PC.csv
-# loading_outfile: Imp2507-PC-loadings.csv
 
 library(dplyr)
 library(tibble)
@@ -49,5 +42,5 @@ df_pca_summary <- df %>%
   bind_cols(pc_score_df)
 
 ### Save output ###
-write.csv(df_pca_summary, score_outfile, row.names = FALSE)
-write.csv(loading_df, loading_outfile, row.names = FALSE)
+fwrite(df_pca_summary, score_outfile)
+fwrite(loading_df, loading_outfile)
