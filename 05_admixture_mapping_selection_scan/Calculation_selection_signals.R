@@ -21,7 +21,7 @@ vcf_file <- "all-impb5.CG.cl.vcf.gz"
 
 qmon_file <- "Qmon.txt"
 qser_file <- "Qser.txt"
-qhyb_file <- "QhybNA.txt"
+qhyb_file <- "Qhyb.txt"
 
 win_size <- 10000
 step_size <- 1
