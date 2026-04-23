@@ -1,21 +1,20 @@
 #!/usr/bin/env Rscript
 # Fit a GAM for stomatal conductance with repeated LI-600 measurements
 # Author: Ryosuke Ito
-# --- Input files (Dryad) ---
-#infile: LI600.txt
 
-library(tidyverse)
+library(data.table)
+library(dplyr)
 library(lubridate)
 library(mgcv)
 
 ### Input ###
-infile <- "gsw.txt" #"LI600.txt"
+infile <- "LI600.txt"
 
 ### Read data ###
-df <- readr::read_tsv(
+df <- fread(
   infile,
-  show_col_types = FALSE,
-  na = c("NA", "NaN", "", "na")
+  sep = "\t",
+  na.strings = c("NA", "NaN", "", "na")
 )
 
 ### Reshape data ###
