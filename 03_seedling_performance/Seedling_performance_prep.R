@@ -2,20 +2,16 @@
 # Summarize site-level fitness data and prepare for GAM analyses
 # Author: Ryosuke Ito
 
-# --- Input file (Dryad) ---
-# infile: fitness2507.csv
-# --- Output file (Dryad)---
-# outfile: fitness2507.by_site.csv
-
+library(data.table)
 library(dplyr)
 
-infile <- "fitness.csv"
+infile <- "survival.csv"
 
 ## Read input data
-df <- read.csv(infile)
+df <- fread(infile, check.names = FALSE)
 
 ## Check required columns
-required_cols <- c("HybridIndex", "Germination", "Alive", "SamplingSite", "Elevation")
+required_cols <- c("HybridIndex", "Germination", "Survival", "SamplingSite", "Elevation")
 missing_cols <- setdiff(required_cols, names(df))
 if (length(missing_cols) > 0) {
   stop("Missing required columns: ", paste(missing_cols, collapse = ", "))
@@ -26,7 +22,7 @@ df <- df %>%
   mutate(
     HybridIndex = as.numeric(HybridIndex),
     Germination = as.integer(Germination),
-    Alive = as.integer(Alive)
+    Survival = as.integer(Survival)
   )
 
 ## Summarize by sampling site
@@ -35,7 +31,7 @@ summary_site <- df %>%
   summarise(
     n_total = n(),
     n_germinated = sum(Germination, na.rm = TRUE),
-    n_survived = sum(Alive, na.rm = TRUE),
+    n_survived = sum(Survival, na.rm = TRUE),
     germ_rate = mean(Germination, na.rm = TRUE),
     mean_Hindex = mean(HybridIndex, na.rm = TRUE),
     sd_Hindex = sd(HybridIndex, na.rm = TRUE),
@@ -50,4 +46,4 @@ summary_site_complete <- summary_site %>%
 ### Write output ###
 outfile <- sub("\\.csv$", "", infile)
 outfile <- paste0(outfile, ".by_site.csv")
-write.csv(summary_site_complete, outfile, row.names = FALSE)
+fwrite(summary_site_complete, outfile)
