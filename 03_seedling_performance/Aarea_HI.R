@@ -8,17 +8,17 @@ library(lubridate)
 library(mgcv)
 
 ### Input ###
-infile <- "LI6800.txt" # "LI6800.txt"
+infile <- "LI6800.txt"
 
 ### Read data ###
-df6800 <- fread(
+df <- fread(
   infile,
   sep = "\t",
   na.strings = c("NA", "NaN", "", "na")
 )
 
 ### Prepare data ###
-dat6800 <- df6800 %>%
+dat <- df %>%
   mutate(
     Time = suppressWarnings(ymd_hms(Time, tz = "Asia/Tokyo")),
     logPPFD = log1p(ppfd_umol_m2_s_1)
@@ -37,7 +37,7 @@ gam_A <- gam(
     s(HybridIndex, k = 10) +
     s(leaf_vpd_kPa, k = 10) +
     s(leaf_temperature_C, k = 10),
-  data = dat6800,
+  data = dat,
   method = "REML"
 )
 
