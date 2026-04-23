@@ -7,7 +7,7 @@ library(dplyr)
 library(mgcv)
 
 ### Input ###
-infile <- "survibval.csv"
+infile <- "survival.csv"
 
 ### Read data ###
 df <- fread(infile, check.names = FALSE)
