@@ -1,17 +1,16 @@
 #!/usr/bin/env Rscript
 # Fit site-level GAMs for germination and survival
 # Author: Ryosuke Ito
-# --- Input files (Dryad) ---
-# infile: fitness2507.csv
 
+library(data.table)
 library(dplyr)
 library(mgcv)
 
 ### Input ###
-infile <- "fitness.csv"
+infile <- "survibval.csv"
 
 ### Read data ###
-df <- read.csv(infile, check.names = FALSE)
+df <- fread(infile, check.names = FALSE)
 
 ### Prepare data ###
 # Adjust variable types as needed
@@ -19,7 +18,7 @@ df <- df %>%
   mutate(
     HybridIndex = as.numeric(HybridIndex),
     Garmination = as.integer(Garmination),
-    Alive = as.integer(Alive)
+    Survival = as.integer(Survival)
   )
 
 ### Summarize by site ###
@@ -28,9 +27,9 @@ summary_site <- df %>%
   summarise(
     n_total = n(),
     n_germinated = sum(Garmination, na.rm = TRUE),
-    n_survived = sum(Alive, na.rm = TRUE),
+    n_survived = sum(Survival, na.rm = TRUE),
     germ_rate = mean(Garmination, na.rm = TRUE),
-    surv_rate = mean(Alive, na.rm = TRUE),
+    surv_rate = mean(Survival, na.rm = TRUE),
     mean_hindex = mean(HybridIndex, na.rm = TRUE),
     sd_hindex = sd(HybridIndex, na.rm = TRUE),
     mean_elevation = mean(Elevation, na.rm = TRUE),
