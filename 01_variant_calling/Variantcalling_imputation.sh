@@ -1,19 +1,21 @@
 #!/usr/bin/env bash
 # SNP calling and imputation pipeline
 # Author: Ryosuke Ito
-# --- Input files (Dryad) ---
-# REF.fa: Quercus_mongolica_genome.fasata (https://doi.org/10.6084/m9.figshare.11888118.v2)
+# The genome and protein sequence data ("Quercus_mongolica_genome.fasta", 
+# "Quercus_mongolica_protein.pep", and "Qlobata.v3.0.PCG.prot.fasta") 
+# were obtained from publicly available repositories (https://doi.org/10.6084/m9.figshare.11888118.v2; 
+# https://valleyoak.ucla.edu/genomic-resources).
 
 set -euo pipefail
 
 # Adjust file paths according to your environment
-REF="REF.fa"
-REFID="REF"
+REF="Quercus_mongolica_genome.fasata"
+REFID="Quercus_mongolica_genome"
 OVERLAPCLIPPED_BAMLIST="all_overlapclipped_bam.txt"
 REALIGNED_BAMLIST="all_realigned_bam.txt"
 THREADS=12
 
-## 1. Build blast database of Q. lobata ###
+### 1. Build blast database of Q. lobata ###
 makeblastdb \
   -in "Qlobata.v3.0.PCG.prot.fasta" \
   -dbtype prot \
