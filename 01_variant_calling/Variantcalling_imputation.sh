@@ -9,11 +9,26 @@
 set -euo pipefail
 
 # Adjust file paths according to your environment
-REF="Quercus_mongolica_genome.fasata"
-REFID="Quercus_mongolica_genome"
+RAW_REF="Quercus_mongolica_genome.fasata"
+REF="Qmon.fa"
+REFID="Qmon"
 OVERLAPCLIPPED_BAMLIST="all_overlapclipped_bam.txt"
 REALIGNED_BAMLIST="all_realigned_bam.txt"
 THREADS=12
+
+# Keep only the 12 anchored superscaffolds and rename them to contig01-contig12
+seqkit grep \
+  -r -p '^Superscaffold[0-9]+$' \
+  "${RAW_REF}" \
+  | awk '
+    /^>/ {
+      sub(/^>Superscaffold/, ">contig")
+      if ($0 ~ /^>contig[1-9]([^0-9]|$)/) {
+        sub(/^>contig/, ">contig0")
+      }
+    }
+    { print }
+  ' > "${REF}"
 
 ### 1. Build blast database of Q. lobata ###
 makeblastdb \
