@@ -2,7 +2,7 @@
 # SNP calling and imputation pipeline
 # Author: Ryosuke Ito
 # --- Input files (Dryad) ---
-# REF.fa: Quercus_mongolica_genome.fasata
+# REF.fa: Quercus_mongolica_genome.fasata (https://doi.org/10.6084/m9.figshare.11888118.v2)
 
 set -euo pipefail
 
