@@ -1,8 +1,6 @@
 #!/usr/bin/env Rscript
 # Infer clines along elevation and distance gradients using hzar
 # Author: Ryosuke Ito
-# --- Input files (Dryad) ---
-# infile: sample.cline.with_transect.csv
 
 library(hzar)
 
@@ -10,7 +8,7 @@ library(hzar)
 infile <- "cline.with_transect.csv"
 
 ### Read data ###
-dat <- read.csv(infile, check.names = FALSE)
+dat <- fread(infile)
 
 # Define site IDs from geographic coordinates
 # Adjust rounding precision if needed
@@ -113,7 +111,7 @@ print(hzar.get.ML.cline(best_ele))
 
 ### Prepare distance-based observations ###
 # Mean transect distance for each site
-site_dist <- tapply(dat$transect_km, dat$site_id, mean, na.rm = TRUE)
+site_dist <- tapply(dat$Transect_km, dat$site_id, mean, na.rm = TRUE)
 
 site_dist_vec <- hzar.mapSiteDist(
   siteID = names(site_dist),
