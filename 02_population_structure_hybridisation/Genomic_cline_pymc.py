@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # Compare cline models of hybrid index using PyMC
 # Author: Ryosuke Ito
-# --- Input files (Dryad) ---
-# admix_file: all-impb5.CGp.cline.with_transect.csv
 
 import pandas as pd
 import numpy as np
@@ -14,11 +12,11 @@ admix_file = "cline.with_transect.csv"
 
 ### Read data ###
 df = pd.read_csv(admix_file)
-need = ["HybridIndex", "Elevation", "transect_km"]
+need = ["HybridIndex", "Elevation", "Transect_km"]
 df = df.dropna(subset = need).copy()
 
 elev = df["Elevation"].to_numpy(float)
-dist = df["transect_km"].to_numpy(float)
+dist = df["Transect_km"].to_numpy(float)
 hi_raw = df["HybridIndex"].to_numpy(float)
 
 ### Prepare response ###
