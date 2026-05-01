@@ -2,18 +2,15 @@
 # SNP calling and imputation pipeline
 # Author: Ryosuke Ito
 # --- Input files (Dryad) ---
-# REF: Qmon.fa
-# REFID: Qmon
-# OVERLAPCLIPPED_BAMLIST: all_overlapclipped_bam.txt
-# REALIGNED_BAMLIST: all_realigned_bam.txt
+# REF.fa: Quercus_mongolica_genome.fasata
 
 set -euo pipefail
 
 # Adjust file paths according to your environment
 REF="REF.fa"
 REFID="REF"
-OVERLAPCLIPPED_BAMLIST="overlapclipped_bam.txt"
-REALIGNED_BAMLIST="realigned_bam.txt"
+OVERLAPCLIPPED_BAMLIST="all_overlapclipped_bam.txt"
+REALIGNED_BAMLIST="all_realigned_bam.txt"
 THREADS=12
 
 ## 1. Build blast database of Q. lobata ###
