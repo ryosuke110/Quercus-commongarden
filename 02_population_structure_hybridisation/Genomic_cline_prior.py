@@ -12,6 +12,7 @@ infile = "Quercus_climate.csv"
 ### Read data ###
 df = pd.read_csv(infile)
 df = df[["species", "temp_annual_mean"]].dropna()
+df["species"] = df["species"].astype(int)
 
 # Check that species is binary (0/1) with both classes present
 vals = set(df["species"].unique())
