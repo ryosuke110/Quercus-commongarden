@@ -2,19 +2,20 @@
 # Create a Spearman correlation plot for imputed trait data
 # Author: Ryosuke Ito
 
+library(data.table)
 library(tidyverse)
 library(Hmisc)
 library(corrplot)
 
 ### Input ###
-infile <- "phnotype-HI.csv"
+infile <- "phenotype-HI.csv"
 plot_outfile <- "corplot.pdf"
 
-drop_cols <- c("SampleID", "HybridIndex", "Elevation", "HeatShock", "Density")
+drop_cols <- c("SampleID", "HybridIndex", "Elevation", "Treatment", "Density")
 use_abs <- FALSE
 
 ### Read data ###
-dat <- fread(infile, data.table = FALSE)
+dat <- fread(infile)
 
 ### Prepare trait matrix ###
 # Exclude identifier and environmental columns, then keep numeric traits only
