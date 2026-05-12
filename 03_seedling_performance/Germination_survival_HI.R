@@ -17,7 +17,7 @@ df <- fread(infile, check.names = FALSE)
 df_clean <- df %>%
   mutate(
     HybridIndex = suppressWarnings(as.numeric(as.character(HybridIndex))),
-    Garmination = suppressWarnings(as.numeric(as.character(Garmination))),
+    Germination = suppressWarnings(as.numeric(as.character(Germination))),
     Survival = suppressWarnings(as.numeric(as.character(Survival)))
   )
 
@@ -26,9 +26,9 @@ summary_site <- df_clean %>%
   group_by(SamplingSite) %>%
   summarise(
     n_total = n(),
-    n_germinated = sum(Garmination, na.rm = TRUE),
+    n_germinated = sum(Germination, na.rm = TRUE),
     n_survived = sum(Survival, na.rm = TRUE),
-    germ_rate = mean(Garmination, na.rm = TRUE),
+    germ_rate = mean(Germination, na.rm = TRUE),
     surv_rate = mean(Survival, na.rm = TRUE),
     mean_hindex = mean(HybridIndex, na.rm = TRUE),
     sd_hindex = sd(HybridIndex, na.rm = TRUE),
