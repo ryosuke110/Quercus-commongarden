@@ -34,7 +34,8 @@ dat_ind <- df_clean %>%
 dat_site <- df_clean %>%
   filter(
 	  !is.na(HybridIndex), 
-	  !is.na(Elevation)
+	  !is.na(Elevation),
+	  !is.na(SamplingSite)
   )
 
 ### Fit individual-level GAMs ###
