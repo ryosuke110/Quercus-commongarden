@@ -2,6 +2,7 @@
 # Fit GAMs of principal components against hybrid index
 # Author: Ryosuke Ito
 
+library(data.table)
 library(mgcv)
 
 ### Input ###
@@ -16,16 +17,16 @@ df <- fread(infile)
 df <- df %>%
   transform(
     HybridIndex = suppressWarnings(as.numeric(HybridIndex)),
-    Density = factor(as.integer(Density)),
-    HeatShock = factor(as.integer(HeatShock))
+    Density = as.integer(Density),
+    Treatment = factor(as.integer(Treatment))
   )
 
 pc_cols <- grep("^PC\\d+$", names(df), value = TRUE)
 pc_cols <- pc_cols[order(as.integer(sub("^PC", "", pc_cols)))]
 pc_cols <- head(pc_cols, n_pc)
 
-need_cols <- c("HybridIndex", "Density", "HeatShock", pc_cols)
-dat_gam <- df[complete.cases(df[, need_cols]), need_cols]
+need_cols <- c("HybridIndex", "Density", "Treatment", pc_cols)
+dat_gam <- df[complete.cases(df[, ..need_cols]), ..need_cols]
 
 ### Fit GAMs ###
 result_df <- data.frame(
@@ -43,12 +44,13 @@ for (i in seq_along(pc_cols)) {
   pc <- pc_cols[i]
 
   fit <- gam(
-    as.formula(paste0(pc, " ~ s(HybridIndex) + Density + HeatShock")),
+    as.formula(paste0(pc, " ~ s(HybridIndex) + Density + Treatment")),
     data = dat_gam,
     method = "REML"
   )
 
   fit_sum <- summary(fit)
+  AIC(fit)
 
   # Extract the p-value for the smooth term of HybridIndex
   ridx <- grep("^s\\(HybridIndex\\)$", rownames(fit_sum$s.table))
