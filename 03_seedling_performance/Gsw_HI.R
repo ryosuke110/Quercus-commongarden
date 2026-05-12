@@ -3,6 +3,7 @@
 # Author: Ryosuke Ito
 
 library(data.table)
+library(tidyr)
 library(dplyr)
 library(lubridate)
 library(mgcv)
@@ -54,4 +55,4 @@ gam_hi_min <- gam(
 )
 
 summary(gam_hi_min)
-gam.check(gam_hi_min)
+AIC(gam_hi_min)
