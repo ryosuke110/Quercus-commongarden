@@ -14,18 +14,21 @@ df <- fread(infile, check.names = FALSE)
 
 ### Prepare data ###
 df_clean <- df %>%
-  select(HybridIndex, DryWeightTotal) %>%
+  select(HybridIndex, DryWeightTotal, Density, Treatment) %>%
   mutate(
     HybridIndex = as.numeric(HybridIndex),
-    DryWeightTotal = as.numeric(DryWeightTotal)
+    DryWeightTotal = as.numeric(DryWeightTotal),
+    Density = as.numeric(Density),
+    Treatment = factor(Treatment)
   ) %>%
-  filter(!is.na(HybridIndex), !is.na(DryWeightTotal))
+  filter(!is.na(HybridIndex), !is.na(DryWeightTotal), !is.na(Density), !is.na(Treatment))
 
 ### Fit GAM ###
 gam_dw <- gam(
-  DryWeightTotal ~ s(HybridIndex),
+  DryWeightTotal ~ s(HybridIndex) + Density + Treatment,
   data = df_clean,
   method = "REML"
 )
 
 summary(gam_dw)
+AIC(gam_dw)
