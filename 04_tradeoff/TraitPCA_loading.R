@@ -2,6 +2,7 @@
 # Run PCA on imputed trait data and export PC scores
 # Author: Ryosuke Ito
 
+library(data.table)
 library(dplyr)
 library(tibble)
 
@@ -17,10 +18,10 @@ trait_cols <- c(
   "RGRtln2208", "RGRtln2308", "RGRca2208", "RGRca2309"
 )
 
-meta_cols <- c("SampleID", "HybridIndex", "Dwtot", "HeatShock", "Density")
+meta_cols <- c("SampleID", "HybridIndex", "Dwtot", "Treatment", "Density")
 
 ### Read data ###
-df <- read.csv(infile, check.names = FALSE)
+df <- fread(infile)
 
 ### Prepare PCA input ###
 dat_pca <- df %>%
