@@ -2,6 +2,7 @@
 # Fit a piecewise SEM for trait trade-offs and biomass allocation
 # Author: Ryosuke Ito
 
+library(data.table)
 library(piecewiseSEM)
 library(dplyr)
 library(readr)
@@ -13,12 +14,12 @@ coef_outfile <- "coefs.csv"
 r2_outfile <- "r2.csv"
 
 ### Read data ###
-df <- fread(infile, data.table = FALSE)
+df <- fread(infile)
 
 ### Prepare data ###
 # Exclude metadata, RGR traits, and selected variables not used in this SEM
 dat_sem <- df %>%
-  select(-any_of(c("SampleID", "HeatShock", "Density"))) %>%
+  select(-any_of(c("SampleID", "Treatment", "Density"))) %>%
   select(where(is.numeric)) %>%
   select(-matches("^RGR")) %>%
   select(-any_of(c("Elevation", "Thk", "BBD", "Pred", "PC1ls", "PC2ls")))
