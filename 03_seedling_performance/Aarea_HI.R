@@ -42,4 +42,4 @@ gam_A <- gam(
 )
 
 summary(gam_A)
-gam.check(gam_A)
+AIC(gam_A)
