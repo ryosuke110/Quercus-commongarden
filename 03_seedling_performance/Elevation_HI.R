@@ -12,32 +12,41 @@ infile <- "survival.csv"
 ### Read data ###
 df <- fread(infile, check.names = FALSE)
 
+### Prepare data ###
+df_clean <- df %>%
+  mutate(
+    HybridIndex = suppressWarnings(as.numeric(as.character(HybridIndex))),
+    Elevation = suppressWarnings(as.numeric(as.character(Elevation))),
+    Density = suppressWarnings(as.numeric(as.character(Density))),
+    Treatment = factor(Treatment),
+    SamplingSite = factor(SamplingSite)
+  )
+
 ### Prepare individual-level data ###
-dat_ind <- df %>%
+dat_ind <- df_clean %>%
   filter(
     !is.na(HybridIndex),
     !is.na(Elevation),
-    !is.na(HeatShock)
-  ) %>%
-  mutate(
-    Density = na_if(Density, "na"),
-    Density = as.numeric(Density),
-	HeatShock = factor(HeatShock)
-  ) %>%
-  filter(!is.na(Density))
+	!is.na(Density),
+    !is.na(Treatment)
+  )
 
-dat_site <- df %>%
-  filter(!is.na(HybridIndex), !is.na(Elevation))
+dat_site <- df_clean %>%
+  filter(
+	  !is.na(HybridIndex), 
+	  !is.na(Elevation)
+  )
 
 ### Fit individual-level GAMs ###
 gam_ind_hi <- gam(
   HybridIndex ~ s(Elevation) +
-    HeatShock + Density,
+    Treatment + Density,
   data = dat_ind,
   method = "REML"
 )
 
 summary(gam_ind_hi)
+AIC(gam_ind_hi)
 
 ### Prepare site-level data ###
 # Use all individuals with non-missing hybrid index and elevation
@@ -64,3 +73,4 @@ gam_site_hi <- gam(
 )
 
 summary(gam_site_hi)
+AIC(gam_site_hi)
