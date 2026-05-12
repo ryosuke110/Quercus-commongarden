@@ -14,15 +14,15 @@ df <- fread(infile, check.names = FALSE)
 
 ### Prepare data ###
 # Adjust variable types as needed
-df <- df %>%
+df_clean <- df %>%
   mutate(
-    HybridIndex = as.numeric(HybridIndex),
-    Garmination = as.integer(Garmination),
-    Survival = as.integer(Survival)
+    HybridIndex = suppressWarnings(as.numeric(as.character(HybridIndex))),
+    Garmination = suppressWarnings(as.numeric(as.character(Garmination))),
+    Survival = suppressWarnings(as.numeric(as.character(Survival)))
   )
 
 ### Summarize by site ###
-summary_site <- df %>%
+summary_site <- df_clean %>%
   group_by(SamplingSite) %>%
   summarise(
     n_total = n(),
@@ -50,6 +50,7 @@ gam_germ <- gam(
 )
 
 summary(gam_germ)
+AIC(gam_germ)
 
 # Survival rate as a function of site mean hybrid index
 # If survival should be conditional on germination, replace n_total with n_germinated
@@ -61,3 +62,4 @@ gam_surv <- gam(
 )
 
 summary(gam_surv)
+AIC(gam_surv)
