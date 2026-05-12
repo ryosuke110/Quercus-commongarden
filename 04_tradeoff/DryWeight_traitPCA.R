@@ -19,7 +19,7 @@ need_cols <- c(pc_cols, "Treatment", "Density", "Dwtot")
 
 df_model <- df[, ..need_cols]
 df_model$Treatment <- factor(as.integer(df_model$Treatment))
-df_model$Density <- factor(as.integer(df_model$Density))
+df_model$Density <- as.integer(df_model$Density)
 df_model$Dwtot <- suppressWarnings(as.numeric(df_model$Dwtot))
 
 df_model <- df_model[complete.cases(df_model), ]
