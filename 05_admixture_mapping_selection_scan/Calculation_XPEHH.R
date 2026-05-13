@@ -2,6 +2,7 @@
 # Calculate XP-EHH between Q. mongolica and Q. serrata across contigs
 # Author: Ryosuke Ito
 
+library(data.table)
 library(vcfR)
 library(rehh)
 
@@ -70,4 +71,4 @@ for (chr in chrs) {
 }
 
 ### Save output ###
-write.csv(xpe_all, outfile, row.names = FALSE)
+fwrite(xpe_all, outfile)
