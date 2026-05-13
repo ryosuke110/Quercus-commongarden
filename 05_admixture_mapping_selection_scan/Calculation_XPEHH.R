@@ -1,9 +1,6 @@
 #!/usr/bin/env Rscript
 # Calculate XP-EHH between Q. mongolica and Q. serrata across contigs
 # Author: Ryosuke Ito
-# --- Output file ---
-# outfile: xpehh_qmon_vs_qser.csv
-
 
 library(vcfR)
 library(rehh)
