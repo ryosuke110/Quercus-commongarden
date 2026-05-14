@@ -6,7 +6,7 @@ library(data.table)
 library(GenoPop)
 
 ### Input & output ###
-vcf_file <- "all-impb5.CG.cl.vcf.gz"
+vcf_file <- "all-CG.vcf.gz"
 
 qmon_file <- "Qmon.txt"
 qser_file <- "Qser.txt"
