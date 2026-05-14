@@ -5,8 +5,8 @@
 set -euo pipefail
 
 ### Input ###
-VCF_IN="all.vcf.gz"
-OUTDIR="mvlmm_2510"
+VCF_IN="all-CG.vcf.gz"
+OUTDIR="mvlmm"
 
 KEEP_HYB="Qhyb.txt"
 KEEP_P1="Qmon.txt"
