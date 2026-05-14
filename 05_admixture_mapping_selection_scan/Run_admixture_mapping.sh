@@ -6,14 +6,14 @@ set -euo pipefail
 
 ### Input ###
 # The input VCF is assumed to have already excluded low-quality or unwanted individuals
-VCF_IN="all-impb5.CG.vcf"
+VCF_IN="all-CG.vcf"
 PREFIX="Quercus_CG"
 BED_PREFIX="Quercus_QC"
 
 KEEP_FILE="quercus_with_phenos.txt"
 RANDOM_FILE="randomeff_bimbam.txt"
-SNPANN_FILE="oak_snpannotation.txt"
-PHENO_FILE="Imp2507-PC-formatted.csv"
+SNPANN_FILE="quercus_snpannotation.txt"
+PHENO_FILE="all_phenotype-PC.csv"
 
 BIMBAM_OUT="Quercus_bimbam_dosage.txt"
 BIMBAM_OUT_AD="Quercus_bimbam_dosage_ad.txt"
