@@ -2,6 +2,7 @@
 # Calculate window-based population genetic statistics using GenoPop
 # Author: Ryosuke Ito
 
+library(data.table)
 library(GenoPop)
 
 ### Input & output ###
@@ -86,9 +87,9 @@ taj_qser_df <- TajimasD(
 )
 
 ### Save output ###
-write.csv(fst_df, fst_outfile, row.names = FALSE)
-write.csv(dxy_df, dxy_outfile, row.names = FALSE)
-write.csv(pi_qmon_df, pi_qmon_outfile, row.names = FALSE)
-write.csv(pi_qser_df, pi_qser_outfile, row.names = FALSE)
-write.csv(taj_qmon_df, taj_qmon_outfile, row.names = FALSE)
-write.csv(taj_qser_df, taj_qser_outfile, row.names = FALSE)
+fwrite(fst_df, fst_outfile)
+fwrite(dxy_df, dxy_outfile)
+fwrite(pi_qmon_df, pi_qmon_outfile)
+fwrite(pi_qser_df, pi_qser_outfile)
+fwrite(taj_qmon_df, taj_qmon_outfile)
+fwrite(taj_qser_df, taj_qser_outfile)
