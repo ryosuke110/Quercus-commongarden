@@ -34,23 +34,23 @@ to_num <- function(x) suppressWarnings(as.numeric(as.character(x)))
 label_contig <- function(n) paste0("contig", n)
 
 ### Extract XP-EHH outliers ###
-thr_xp_pos <- quantile(xpehh_df$xpehh, q_upper, na.rm = TRUE)
-thr_xp_neg <- quantile(xpehh_df$xpehh, q_lower, na.rm = TRUE)
+thr_xp_pos <- quantile(xpehh_df$XPEHH_Qmon_Qser, q_upper, na.rm = TRUE)
+thr_xp_neg <- quantile(xpehh_df$XPEHH_Qmon_Qser, q_lower, na.rm = TRUE)
 
 xp_pos <- xpehh_df %>%
-  filter(is.finite(xpehh), xpehh >= thr_xp_pos) %>%
+  filter(is.finite(XPEHH_Qmon_Qser), XPEHH_Qmon_Qser >= thr_xp_pos) %>%
   transmute(
-    chr = label_contig(CHR_NUM),
-    start = as.integer(pos) - 1L,
-    end = as.integer(pos)
+    chr = CHR,
+    start = as.integer(POSITION) - 1L,
+    end = as.integer(POSITION)
   )
 
 xp_neg <- xpehh_df %>%
-  filter(is.finite(xpehh), xpehh <= thr_xp_neg) %>%
+  filter(is.finite(XPEHH_Qmon_Qser), XPEHH_Qmon_Qser <= thr_xp_neg) %>%
   transmute(
-    chr = label_contig(CHR_NUM),
-    start = as.integer(pos) - 1L,
-    end = as.integer(pos)
+    chr = CHR,
+    start = as.integer(POSITION) - 1L,
+    end = as.integer(POSITION)
   )
 
 ### Extract admixture mapping outliers ###
@@ -63,63 +63,63 @@ adm_sig <- admix_df %>%
   )
 
 ### Extract Fst and dXY outliers ###
-thr_fst <- quantile(fst_df$fst, q_upper, na.rm = TRUE)
-thr_dxy <- quantile(dxy_df$dxy, q_upper, na.rm = TRUE)
+thr_fst <- quantile(fst_df$Fst, q_upper, na.rm = TRUE)
+thr_dxy <- quantile(dxy_df$Dxy, q_upper, na.rm = TRUE)
 
 fst_hi <- fst_df %>%
-  filter(is.finite(fst), fst >= thr_fst) %>%
+  filter(is.finite(Fst), Fst >= thr_fst) %>%
   transmute(
-    chr = label_contig(CHR_NUM),
-    start = as.integer(start) - 1L,
-    end = as.integer(end)
+    chr = Chromosome,
+    start = as.integer(Start),
+    end = as.integer(End)
   )
 
 dxy_hi <- dxy_df %>%
-  filter(is.finite(dxy), dxy >= thr_dxy) %>%
+  filter(is.finite(Dxy), Dxy >= thr_dxy) %>%
   transmute(
-    chr = label_contig(CHR_NUM),
-    start = as.integer(start) - 1L,
-    end = as.integer(end)
+    chr = Chromosome,
+    start = as.integer(Start),
+    end = as.integer(End)
   )
 
 ### Extract pi outliers ###
-thr_pi_qmon <- quantile(pi_qmon_df$pi, q_lower, na.rm = TRUE)
-thr_pi_qser <- quantile(pi_qser_df$pi, q_lower, na.rm = TRUE)
+thr_pi_qmon <- quantile(pi_qmon_df$Pi, q_lower, na.rm = TRUE)
+thr_pi_qser <- quantile(pi_qser_df$Pi, q_lower, na.rm = TRUE)
 
-pi_qmon <- pi_df %>%
-  filter(pop == "Qmon", is.finite(pi), pi <= thr_pi_qmon) %>%
+pi_qmon <- pi_qmon_df %>%
+  filter(is.finite(Pi), Pi <= thr_pi_qmon) %>%
   transmute(
-    chr = label_contig(CHR_NUM),
-    start = as.integer(start) - 1L,
-    end = as.integer(end)
+    chr = Chromosome,
+    start = as.integer(Start),
+    end = as.integer(End)
   )
 
-pi_qser <- pi_df %>%
-  filter(pop == "Qser", is.finite(pi), pi <= thr_pi_qser) %>%
+pi_qser <- pi_qser_df %>%
+  filter(is.finite(Pi), Pi <= thr_pi_qser) %>%
   transmute(
-    chr = label_contig(CHR_NUM),
-    start = as.integer(start) - 1L,
-    end = as.integer(end)
+    chr = Chromosome,
+    start = as.integer(Start),
+    end = as.integer(End)
   )
 
 ### Extract Tajima's D outliers ###
-thr_taj_qmon <- quantile(taj_qmon_df$tajD, q_lower, na.rm = TRUE)
-thr_taj_qser <- quantile(taj_qser_df$tajD, q_lower, na.rm = TRUE)
+thr_taj_qmon <- quantile(taj_qmon_df$TajimasD, q_lower, na.rm = TRUE)
+thr_taj_qser <- quantile(taj_qser_df$TajimasD, q_lower, na.rm = TRUE)
 
-taj_qmon <- taj_df %>%
-  filter(pop == "Qmon", is.finite(tajD), tajD <= thr_taj_qmon) %>%
+taj_qmon <- taj_qmon_df %>%
+  filter(is.finite(TajimasD), TajimasD <= thr_taj_qmon) %>%
   transmute(
-    chr = label_contig(CHR_NUM),
-    start = as.integer(start) - 1L,
-    end = as.integer(end)
+    chr = Chromosome,
+    start = as.integer(Start),
+    end = as.integer(End)
   )
 
-taj_qser <- taj_df %>%
-  filter(pop == "Qser", is.finite(tajD), tajD <= thr_taj_qser) %>%
+taj_qser <- taj_qser_df %>%
+  filter(is.finite(TajimasD), TajimasD <= thr_taj_qser) %>%
   transmute(
-    chr = label_contig(CHR_NUM),
-    start = as.integer(start) - 1L,
-    end = as.integer(end)
+    chr = Chromosome,
+    start = as.integer(Start),
+    end = as.integer(End)
   )
 
 ### Save output ###
