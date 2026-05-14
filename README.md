@@ -73,7 +73,7 @@ Trait correlation and trade-off analyses.
 - **Extract_Admap_plus1.R**:
   Integration of admixture mapping hits with other selection signals.
 
-#### 06_genetic_scan/  
+#### 06_genetic_coupling/  
   Analyses of genetic coupling among trait-associated loci.
 - **Run_genetic_coupling.sh**:
   Main pipeline for genetic coupling analysis.
