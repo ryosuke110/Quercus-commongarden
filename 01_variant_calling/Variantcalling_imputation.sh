@@ -174,7 +174,7 @@ done
 ## Pre-imputation using Beagle3
 for CHR in {01..12}; do
 
-  java -jar "beagle-3.3.2/beagle.jar" \
+  java -jar "beagle-3.3.2.jar" \
     like="contig${CHR}.beagle.gz" \
     out="contig${CHR}-imp-b3"
 
@@ -219,7 +219,7 @@ done
 
 ## Concatenate imputed vcfs
 bcftools concat \
-  -o "all-impb5.vcf" \
+  -o "all-CG.vcf" \
   "contig01-impb5-fixed.vcf.gz" \
   "contig02-impb5-fixed.vcf.gz" \
   "contig03-impb5-fixed.vcf.gz" \
