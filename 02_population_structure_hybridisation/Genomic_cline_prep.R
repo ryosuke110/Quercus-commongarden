@@ -8,7 +8,7 @@ library(dplyr)
 
 ### Input ###
 infile   <- "cline.csv"
-id_zero  <- "H29301"   # origin of transect distance
+id_zero  <- "H29301"   # the name of sample at origin of transect distance
 crs_geo  <- 4326       # WGS84
 crs_prj  <- 6677       # projected CRS; adjust according to study region
 
