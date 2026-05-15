@@ -6,7 +6,7 @@ library(dplyr)
 library(missForest)
 
 ### Input ###
-infile <- "AllData2507.csv"
+infile <- "all-phenotype.csv"
 outfile <- "Imp2507.csv"
 
 trait_cols <- c(
