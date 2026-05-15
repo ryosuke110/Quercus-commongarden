@@ -19,7 +19,15 @@ input_files <- list(
   taj_qser = "outliers_taj_Qser_gff.bed"
 )
 
+### Output ###
 outdir <- "adm_plus"
+output_files <- list(
+  matrix_out = "evidence_matrix.tsv"
+  plus1_out = "adm_plus1.tsv"
+  plus2_out= "adm_plus2.tsv"
+  plus1_pretty_out = "adm_plus1_pretty.tsv"
+  plus2_pretty_out = "adm_plus2_pretty.tsv"
+)
 
 ### Helper functions ###
 extract_gene <- function(x) {
@@ -145,30 +153,30 @@ dir.create(outdir, showWarnings = FALSE)
 
 fwrite(
   evidence_df,
-  file = file.path(outdir, "evidence_matrix.tsv"),
+  file = file.path(outdir, output_files$matrix_out),
   sep = "\t"
 )
 
 fwrite(
   adm_plus1,
-  file = file.path(outdir, "adm_plus1.tsv"),
+  file = file.path(outdir, output_files$plus1_out),
   sep = "\t"
 )
 
 fwrite(
   adm_plus2,
-  file = file.path(outdir, "adm_plus2.tsv"),
+  file = file.path(outdir, output_files$plus2_out),
   sep = "\t"
 )
 
 fwrite(
   pretty_flags(adm_plus1),
-  file = file.path(outdir, "adm_plus1_pretty.tsv"),
+  file = file.path(outdir, output_files$plus1_pretty_out),
   sep = "\t"
 )
 
 fwrite(
   pretty_flags(adm_plus2),
-  file = file.path(outdir, "adm_plus2_pretty.tsv"),
+  file = file.path(outdir, output_files$plus2_pretty_out),
   sep = "\t"
 )
