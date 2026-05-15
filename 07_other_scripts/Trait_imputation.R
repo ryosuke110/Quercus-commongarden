@@ -7,7 +7,7 @@ library(missForest)
 
 ### Input ###
 infile <- "all-phenotype.csv"
-outfile <- "Imp2507.csv"
+outfile <- "phenotype-HI.csv"
 
 trait_cols <- c(
   "HybridIndex", "SampleID", "Height", "Diameter", "CA", "LeafTotal", "DryWeightRoot",
