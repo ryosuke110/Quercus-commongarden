@@ -6,7 +6,7 @@ library(data.table)
 library(dplyr)
 
 ### Input ###
-xpehh_file <- "xpehh_qmon_vs_qser.csv"
+xpehh_file <- "xpehh.csv"
 admix_file <- "gemma_admixture_mapping.csv"
 fst_file <- "fst_10k.csv"
 dxy_file <- "dxy_10k.csv"
