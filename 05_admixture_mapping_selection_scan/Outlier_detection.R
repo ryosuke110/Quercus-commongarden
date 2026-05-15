@@ -19,6 +19,17 @@ alpha_adm <- 0.05
 q_upper <- 0.99
 q_lower <- 0.01
 
+### Output ###
+xp_pos_out <- "outliers_xpehh_pos.bed"
+xp_neg_out <- "outliers_xpehh_neg.bed"
+adm_sig_out <- "outliers_adm_sig.bed"
+fst_hi_out <- "outliers_fst_high.bed"
+dxy_hi_out <- "outliers_dxy_high.bed"
+pi_qmon_out <- "outliers_pi_Qmon.bed"
+pi_qser_out <- "outliers_pi_Qser.bed"
+taj_qmon_out <- "outliers_taj_Qmon.bed"
+taj_qser_out <- "outliers_taj_Qser.bed"
+
 ### Read data ###
 xpehh_df <- fread(xpehh_file)
 admix_df <- fread(admix_file)
@@ -70,7 +81,7 @@ fst_hi <- fst_df %>%
   filter(is.finite(Fst), Fst >= thr_fst) %>%
   transmute(
     chr = Chromosome,
-    start = as.integer(Start),
+    start = as.integer(Start) - 1L,
     end = as.integer(End)
   )
 
@@ -78,7 +89,7 @@ dxy_hi <- dxy_df %>%
   filter(is.finite(Dxy), Dxy >= thr_dxy) %>%
   transmute(
     chr = Chromosome,
-    start = as.integer(Start),
+    start = as.integer(Start) - 1L,
     end = as.integer(End)
   )
 
@@ -90,7 +101,7 @@ pi_qmon <- pi_qmon_df %>%
   filter(is.finite(Pi), Pi <= thr_pi_qmon) %>%
   transmute(
     chr = Chromosome,
-    start = as.integer(Start),
+    start = as.integer(Start) - 1L,
     end = as.integer(End)
   )
 
@@ -98,7 +109,7 @@ pi_qser <- pi_qser_df %>%
   filter(is.finite(Pi), Pi <= thr_pi_qser) %>%
   transmute(
     chr = Chromosome,
-    start = as.integer(Start),
+    start = as.integer(Start) - 1L,
     end = as.integer(End)
   )
 
@@ -110,7 +121,7 @@ taj_qmon <- taj_qmon_df %>%
   filter(is.finite(TajimasD), TajimasD <= thr_taj_qmon) %>%
   transmute(
     chr = Chromosome,
-    start = as.integer(Start),
+    start = as.integer(Start) - 1L,
     end = as.integer(End)
   )
 
@@ -118,17 +129,17 @@ taj_qser <- taj_qser_df %>%
   filter(is.finite(TajimasD), TajimasD <= thr_taj_qser) %>%
   transmute(
     chr = Chromosome,
-    start = as.integer(Start),
+    start = as.integer(Start) - 1L,
     end = as.integer(End)
   )
 
 ### Save output ###
-fwrite(xp_pos,   "outliers_xpehh_pos.bed",  sep = "\t", col.names = FALSE)
-fwrite(xp_neg,   "outliers_xpehh_neg.bed",  sep = "\t", col.names = FALSE)
-fwrite(adm_sig,  "outliers_adm_sig.bed",    sep = "\t", col.names = FALSE)
-fwrite(fst_hi,   "outliers_fst_high.bed",   sep = "\t", col.names = FALSE)
-fwrite(dxy_hi,   "outliers_dxy_high.bed",   sep = "\t", col.names = FALSE)
-fwrite(pi_qmon,  "outliers_pi_Qmon.bed",    sep = "\t", col.names = FALSE)
-fwrite(pi_qser,  "outliers_pi_Qser.bed",    sep = "\t", col.names = FALSE)
-fwrite(taj_qmon, "outliers_taj_Qmon.bed",   sep = "\t", col.names = FALSE)
-fwrite(taj_qser, "outliers_taj_Qser.bed",   sep = "\t", col.names = FALSE)
+fwrite(xp_pos, xp_pos_out, sep = "\t")
+fwrite(xp_neg, xp_neg_out, sep = "\t")
+fwrite(adm_sig, adm_sig_out, sep = "\t")
+fwrite(fst_hi, fst_hi_out, sep = "\t")
+fwrite(dxy_hi, dxy_hi_out, sep = "\t")
+fwrite(pi_qmon, pi_qmon_out, sep = "\t")
+fwrite(pi_qser, pi_qser_out, sep = "\t")
+fwrite(taj_qmon, taj_qmon_out, sep = "\t")
+fwrite(taj_qser, taj_qser_out, sep = "\t")
