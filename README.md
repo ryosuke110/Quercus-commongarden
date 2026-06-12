@@ -133,3 +133,9 @@ The analyses assume that the following software are available in the user enviro
 * piecewiseSEM  
 * bgc-hm  
 * ShinyGO
+
+---
+
+## License
+
+This repository is distributed under the MIT License.
