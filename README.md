@@ -1,18 +1,34 @@
 # Quercus-commongarden
-## Analytical workflow for the oak hybrid zone study
-This repository contains analysis scripts used for the genomic and phenotypic analyses described in:
 
-Ito et al. (in prep.)  
+Analysis scripts associated with:
+
+Ito et al. (in prep.)
 *Molecular evolutionary evidence for coexistence within oak hybrid zones.*
 
+This repository contains scripts used for population genomic, phenotypic, and statistical analyses described in the manuscript.
+
+Processed datasets are available through Dryad (doi:10.5061/dryad.4f4qrfjtd).
+
+Raw sequencing reads are available through DDBJ (BioProject: PRJDB40283).
+
+Detailed analytical procedures are described in workflow.md.
+
 Raw sequencing data are available from DDBJ, and processed datasets are deposited in Dryad.
-Quercus_climate.csv is combines occurrence data from the National Survey on the Natural Environment
+Quercus_climate.csv combines occurrence data from the National Survey on the Natural Environment
 and climate variables from the NARO Agro-Meteorological Grid Square Data.
 
 ---
 
 ## Repository structure
-The repository is organized by analysis modules corresponding to the main components of the study.
+
+- 01_variant_calling/
+- 02_population_structure_hybridisation/
+- 03_seedling_performance/
+- 04_tradeoff/
+- 05_admixture_mapping_selection_scan/
+- 06_genetic_coupling/
+- 07_other_scripts/
+A detailed description of each module is provided below.
 
 #### 01_variant_calling/  
   Scripts for variant calling, filtering, and genotype imputation.
@@ -102,38 +118,69 @@ Trait correlation and trade-off analyses.
 #### README.md  
   Documentation describing the structure and workflow of this repository.
 
+#### workflow.md
+
 ---
 
-## Software and dependencies
+## Installation
+
+Clone this repository:
+```
+git clone https://github.com/ryosuke110/Quercus-commongarden.git
+cd Quercus-commongarden
+```
+The repository contains analysis scripts only. Input datasets are available through Dryad (doi:10.5061/dryad.4f4qrfjtd), and raw sequencing reads are available through DDBJ (PRJDB40283).
+
+## Software requirements
 
 The analyses assume that the following software are available in the user environment unless otherwise specified.
 
-* fastp  
-* bwa-mem2  
-* samtools  
-* bcftools  
-* bedtools  
-* vcftools  
-* GATK 3.8
-* Picard  
-* bamUtil  
-* ANGSD  
-* Beagle 3.3 & 5.5
-* PLINK
-* ADMIXTURE  
-* GEMMA  
-* triangulaR  
-* hzar  
-* rehh  
-* R  
-* Python  
-* PyMC  
-* missForest  
-* corrplot  
-* piecewiseSEM  
-* bgc-hm  
-* ShinyGO
+* R (v4.4.0)
+* Python (v3.12)
+* blastp (v.2.16.0)
+* fastp  (v1.0.0)
+* bwa-mem2  (v2.2.1)
+* Picard  (v3.4.0)
+* bamUtil (v1.0.15)
+* GATK (v3.8.1)
+* ANGSD  (v0.94)
+* Beagle (v3.3.1 & v5.5)
+* fcGENE (v1.0.7)
+* samtools  (v1.17)
+* bcftools (v1.22) 
+* bedtools (v2.18)
+* PLINK (v1.9 & v2.0)
+* vcftools (v0.1.17)
+* ADMIXTURE (v1.3.0)
+* triangulaR (v1.14)
+* hzar (v0.2)
+* PyMC (v5.26)
+* mgcv (v1.9.4)
+* missForest (v1.6.0)
+* Hmisc (v5.2.0)
+* corrplot (v0.95)
+* piecewiseSEM (v2.3.1)
+* GEMMA (v0.98)
+* rehh (v3.2.2)
+* GenoPop (v0.9)
+* ShinyGO (v0.85)
+* bgc-hm (version not specified)
+* ggplot2 (4.0.0)
 
+---
+
+## Analytical workflow
+
+The workflow consists of six major analytical modules:
+
+1. Variant calling and genotype imputation
+2. Population structure and genomic cline analyses
+3. Seedling performance analyses
+4. Trait trade-off analyses
+5. Admixture mapping and selection scans
+6. Genetic coupling analyses
+
+A detailed description of the workflow, including representative commands, input datasets, and expected outputs, is provided in workflow.md.
 ---
 
 ## License
