@@ -11,6 +11,24 @@ Raw sequencing reads have been deposited in DDBJ under BioProject PRJDB40283.
 
 ---
 
+# Demo datasets
+
+The processed datasets deposited in this repository can be used as demonstration datasets for reproducing representative analyses described in the associated GitHub repository.
+
+The repository contains processed datasets corresponding to all major analytical modules, including:
+
+* population structure and genomic cline analyses
+* seedling performance analyses
+* trait trade-off analyses
+* admixture mapping and selection scans
+* genetic coupling analyses
+
+Detailed instructions for running representative analyses, expected outputs, and typical runtimes are provided in the corresponding sections below.
+
+These processed datasets allow reproduction of representative analyses without reprocessing raw sequencing data from DDBJ.
+
+---
+
 # 1. Variant calling and genotype imputation
 
 This module generates the filtered and imputed SNP dataset used in all downstream analyses.
@@ -643,4 +661,4 @@ Elliptic Fourier analysis of leaf outline coordinates after filtering low-qualit
 
 # Notes
 
-The scripts are organized according to the main analytical modules of the manuscript. Some scripts require processed input files deposited in Dryad, whereas raw read processing starts from sequencing data deposited in DDBJ. Intermediate temporary files generated during script execution are not exhaustively listed here. The workflow focuses on the principal input and output files required to reproduce the analyses presented in the manuscript.
+The scripts are organized according to the main analytical modules of the manuscript. Some scripts require processed input files deposited in Dryad, whereas raw read processing starts from sequencing data deposited in DDBJ. Intermediate temporary files generated during script execution are not exhaustively listed here. These processed datasets allow reproduction of representative analyses on a standard desktop computer without reprocessing raw sequencing data from DDBJ.
