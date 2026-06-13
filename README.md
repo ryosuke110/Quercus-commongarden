@@ -182,6 +182,7 @@ The workflow consists of six major analytical modules:
 6. Genetic coupling analyses
 
 A detailed description of the workflow, including representative commands, input datasets, and expected outputs, is provided in workflow.md.
+
 ---
 
 ## License
