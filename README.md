@@ -54,7 +54,7 @@ A detailed description of each module is provided below.
 - **Seedling_performance_prep.R**:
   Data preparation for seedling performance analyses.
 - **Aarea_HI.R**:
-  Leaf area vs hybrid index analysis.
+  Photosynthetic rate vs hybrid index analysis.
 - **DryWeight_HI.R**:
   Seedling biomass vs hybrid index analysis.
 - **Elevation_HI.R**:
@@ -168,6 +168,8 @@ The analyses assume that the following software are available in the user enviro
 * ShinyGO (v0.85)
 * bgc-hm (version not specified)
 * ggplot2 (4.0.0)
+
+No non-standard hardware is required.
 
 ---
 
