@@ -131,6 +131,7 @@ Clone this repository:
 git clone https://github.com/ryosuke110/Quercus-commongarden.git
 cd Quercus-commongarden
 ```
+Typical installation time is less than 1 minute on a standard desktop computer.
 
 ## Software requirements
 
