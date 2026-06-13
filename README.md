@@ -13,9 +13,7 @@ Raw sequencing reads are available through DDBJ (BioProject: PRJDB40283).
 
 Detailed analytical procedures are described in workflow.md.
 
-Raw sequencing data are available from DDBJ, and processed datasets are deposited in Dryad.
-Quercus_climate.csv combines occurrence data from the National Survey on the Natural Environment
-and climate variables from the NARO Agro-Meteorological Grid Square Data.
+Quercus_climate.csv combines occurrence data from the National Survey on the Natural Environment and climate variables from the NARO Agro-Meteorological Grid Square Data.
 
 ---
 
@@ -28,7 +26,10 @@ and climate variables from the NARO Agro-Meteorological Grid Square Data.
 - 05_admixture_mapping_selection_scan/
 - 06_genetic_coupling/
 - 07_other_scripts/
+
 A detailed description of each module is provided below.
+
+---
 
 #### 01_variant_calling/  
   Scripts for variant calling, filtering, and genotype imputation.
@@ -119,6 +120,7 @@ Trait correlation and trade-off analyses.
   Documentation describing the structure and workflow of this repository.
 
 #### workflow.md
+  Detailed analytical workflow, including representative commands, input datasets, and expected outputs for each analysis.
 
 ---
 
@@ -129,7 +131,6 @@ Clone this repository:
 git clone https://github.com/ryosuke110/Quercus-commongarden.git
 cd Quercus-commongarden
 ```
-The repository contains analysis scripts only. Input datasets are available through Dryad (doi:10.5061/dryad.4f4qrfjtd), and raw sequencing reads are available through DDBJ (PRJDB40283).
 
 ## Software requirements
 
