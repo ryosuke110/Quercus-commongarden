@@ -9,7 +9,7 @@ This repository contains scripts used for population genomic, phenotypic, and st
 
 Processed datasets are available through Dryad (doi:10.5061/dryad.4f4qrfjtd).
 
-Raw sequencing reads are available through DDBJ (BioProject: PRJDB40283).
+Raw sequencing reads have been deposited in DDBJ under BioProject PRJDB40283 and will be released upon publication.
 
 Detailed analytical procedures are described in workflow.md.
 
