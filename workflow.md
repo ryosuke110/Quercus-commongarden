@@ -3,20 +3,23 @@
 This document describes the analytical workflow associated with:
 
 Ito et al. (in prep.)
-*Molecular evolutionary evidence for coexistence within oak hybrid zones.*
+*Selection maintains genetic coupling of functional trait trade-offs despite gene flow in an oak hybrid zone.*
 
 Processed datasets are available through Dryad.
 
 Raw sequencing reads have been deposited in DDBJ under BioProject PRJDB40283.
 
+Occurrence and climate data must be obtained directly from the respective providers. See [fetch_climate_occurrence.md](01_niche_differentiation_co-occurrence/fetch_climate_occurrence.md) for input preparation.
+
 ---
 
-# Demo datasets
+## Demo datasets
 
 The processed datasets deposited in this repository can be used as demonstration datasets for reproducing representative analyses described in the associated GitHub repository.
 
 The repository contains processed datasets corresponding to all major analytical modules, including:
 
+* climatic niche differentiation, niche overlap, and local co-occurrence analyses
 * population structure and genomic cline analyses
 * seedling performance analyses
 * trait trade-off analyses
@@ -29,15 +32,93 @@ These processed datasets allow reproduction of representative analyses without r
 
 ---
 
-# 1. Variant calling and genotype imputation
+## 1. Climatic niche differentiation and co-occurrence
 
-This module generates the filtered and imputed SNP dataset used in all downstream analyses.
-
-## Step 1.1 Variant calling and genotype imputation
+#### Step 1.1 Occurrence data preparation
 
 Script:
 
-01_variant_calling/Variantcalling_imputation.sh
+01_niche_differentiation_co-occurrence/Build_occurrence_input.R
+
+Input:
+
+* National Forest Inventory tree-record CSV
+* National Forest Inventory plot CSV
+
+Output:
+
+* Qmon_Qser_occurrence.csv
+* occurrence_audit.csv
+
+Description:
+
+Preparation of plot-level presence–absence data, retaining forest plots where neither focal species occurs.
+
+---
+
+## Step 1.2 Climate data retrieval
+
+Script:
+
+01_niche_differentiation_co-occurrence/Fetch_amgsds_climate.py
+
+Input:
+
+* Qmon_Qser_occurrence.csv
+* Authorized AMGSDS access
+* The current IDCS-compatible `AMD_Tools4.py`
+
+Output:
+
+* annual_climate_2016_2025.csv
+* climate_2016_2025.csv
+* Quercus_climate.csv
+* excluded_plots.csv
+* Quercus_climate_audit.csv
+* aggregation_settings.json
+
+Description:
+
+Retrieval and aggregation of daily climate data and integration with plot-level occurrence records.
+
+---
+
+## Step 1.3 Climatic niche analyses
+
+Script:
+
+01_niche_differentiation_co-occurrence/Climate_sfJSDM.R
+
+Input:
+
+* Quercus_climate.csv
+
+Output:
+
+* sfJSDM model object, settings, summaries, and MCMC diagnostics
+* Species-specific climate coefficients and posterior samples
+* Qmon–Qser coefficient contrasts
+* Marginal climatic response curves
+* PCA loadings and explained variance
+* PCA-env niche-overlap indices and niche-centroid distance
+* Coverage of the shared climatic niche by the climatic region represented by co-occurrence sites
+* Figures and machine-readable summary tables
+
+Description:
+
+Analysis of species-specific climatic responses, climatic niche overlap, and observed co-occurrence coverage using sfJSDM and PCA-env.
+
+---
+
+## 2. Variant calling and genotype imputation
+
+This module generates the filtered and imputed SNP dataset used in all downstream analyses.
+
+#### Step 2.1 Variant calling and genotype imputation
+
+Script:
+
+02_variant_calling/Variantcalling_imputation.sh
 
 Input:
 
@@ -53,15 +134,15 @@ Reads are quality filtered, aligned to the reference genome, subjected to varian
 
 ---
 
-# 2. Population structure and genomic cline analyses
+## 3. Population structure and genomic cline analyses
 
 This module estimates hybrid indices and genomic cline parameters.
 
-## Step 2.1 Data preparation
+#### Step 3.1 Data preparation
 
 Script:
 
-02_population_structure_hybridisation/Genomic_cline_prep.R
+03_population_structure_hybridisation/Genomic_cline_prep.R
 
 Input:
 
@@ -78,11 +159,11 @@ Converts sample coordinates into one-dimensional transect positions and prepares
 
 ---
 
-## Step 2.2 Prior estimation
+#### Step 3.2 Prior estimation
 
 Script:
 
-02_population_structure_hybridisation/Genomic_cline_prior.py
+03_population_structure_hybridisation/Genomic_cline_prior.py
 
 Input:
 
@@ -98,11 +179,11 @@ Estimation of prior distributions for Bayesian genomic cline analyses.
 
 ---
 
-## Step 2.3 Bayesian genomic cline analysis
+#### Step 3.3 Bayesian genomic cline analysis
 
 Script:
 
-02_population_structure_hybridisation/Genomic_cline_pymc.py
+03_population_structure_hybridisation/Genomic_cline_pymc.py
 
 Input:
 
@@ -119,11 +200,11 @@ Bayesian estimation of genomic cline parameters using PyMC.
 
 ---
 
-## Step 2.4 Elevational genomic cline analysis
+#### Step 3.4 Elevational genomic cline analysis
 
 Script:
 
-02_population_structure_hybridisation/Genomic_cline_hzar_elevation.R
+03_population_structure_hybridisation/Genomic_cline_hzar_elevation.R
 
 Input:
 
@@ -139,15 +220,15 @@ Genomic cline modelling along elevational gradients using the HZAR framework.
 
 ---
 
-# 3. Seedling performance analyses
+## 4. Seedling performance analyses
 
 This module evaluates relationships among hybrid index, seedling performance, and physiological traits.
 
-## Step 3.1 Data preparation
+#### Step 3.1 Data preparation
 
 Script:
 
-03_seedling_performance/Seedling_performance_prep.R
+04_seedling_performance/Seedling_performance_prep.R
 
 Input:
 
@@ -163,11 +244,11 @@ Preparation of phenotypic datasets used in downstream analyses.
 
 ---
 
-## Step 3.2 Germination and survival analyses
+#### Step 4.2 Germination and survival analyses
 
 Script:
 
-03_seedling_performance/Germination_survival_HI.R
+04_seedling_performance/Germination_survival_HI.R
 
 Input:
 
@@ -184,11 +265,11 @@ Analysis of germination and survival as a function of hybrid index.
 
 ---
 
-## Step 3.3 Biomass analyses
+#### Step 4.3 Biomass analyses
 
 Script:
 
-03_seedling_performance/DryWeight_HI.R
+04_seedling_performance/DryWeight_HI.R
 
 Input:
 
@@ -205,11 +286,11 @@ Analysis of seedling biomass variation along the hybrid index gradient.
 
 ---
 
-## Step 3.4 Photosynthetic rate analyses
+#### Step 4.4 Photosynthetic rate analyses
 
 Script:
 
-03_seedling_performance/Aarea_HI.R
+04_seedling_performance/Aarea_HI.R
 
 Input:
 
@@ -226,11 +307,11 @@ Analysis of photosynthetic performance measured using the LI-6800 system.
 
 ---
 
-## Step 3.5 Stomatal conductance analyses
+#### Step 4.5 Stomatal conductance analyses
 
 Script:
 
-03_seedling_performance/Gsw_HI.R
+04_seedling_performance/Gsw_HI.R
 
 Input:
 
@@ -247,15 +328,15 @@ Analysis of stomatal conductance variation along the hybrid index gradient.
 
 ---
 
-# 4. Trait trade-off analyses
+## 5. Trait trade-off analyses
 
 This module evaluates correlations among functional traits, trait principal components, and structural relationships among traits.
 
-## Step 4.1 Trait correlation analysis
+#### Step 5.1 Trait correlation analysis
 
 Script:
 
-04_tradeoff/Trait_corplot.R
+05_tradeoff/Trait_corplot.R
 
 Input:
 
@@ -271,11 +352,11 @@ Correlation analysis among functional traits and generation of a trait correlati
 
 ---
 
-## Step 4.2 PCA loading extraction and visualization
+#### Step 5.2 PCA loading extraction and visualization
 
 Script:
 
-04_tradeoff/TraitPCA_loading.R
+05_tradeoff/TraitPCA_loading.R
 
 Input:
 
@@ -292,11 +373,11 @@ Principal component analysis of trait data and extraction of loading matrices.
 
 ---
 
-## Step 4.3 Biomass trait analyses
+#### Step 5.3 Biomass trait analyses
 
 Script:
 
-04_tradeoff/DryWeight_traitPCA.R
+05_tradeoff/DryWeight_traitPCA.R
 
 Input:
 
@@ -313,11 +394,11 @@ Analysis of relationships between biomass allocation and trait principal compone
 
 ---
 
-## Step 4.4 Trait PCA and hybrid index associations
+#### Step 5.4 Trait PCA and hybrid index associations
 
 Script:
 
-04_tradeoff/HI_traitPCA.R
+05_tradeoff/HI_traitPCA.R
 
 Input:
 
@@ -333,11 +414,11 @@ Analysis of relationships between hybrid index and trait principal components.
 
 ---
 
-## Step 4.5 Structural equation modelling
+#### Step 5.5 Structural equation modelling
 
 Script:
 
-04_tradeoff/Trait_SEM_bestmodel.R
+05_tradeoff/Trait_SEM_bestmodel.R
 
 Input:
 
@@ -354,15 +435,15 @@ Structural equation modelling of relationships among hybrid index, functional tr
 
 ---
 
-# 5. Admixture mapping and selection scans
+## 6. Admixture mapping and selection scans
 
 This module identifies loci associated with phenotypic variation and evaluates signatures of divergent selection.
 
-## Step 5.1 Admixture mapping
+#### Step 6.1 Admixture mapping
 
 Script:
 
-05_admixture_mapping_selection_scan/Run_admixture_mapping.sh
+06_admixture_mapping_selection_scan/Run_admixture_mapping.sh
 
 Input:
 
@@ -381,11 +462,11 @@ Admixture mapping using GEMMA to identify SNPs associated with phenotypic trait 
 
 ---
 
-## Step 5.2 Calculation of population genomic statistics
+#### Step 6.2 Calculation of population genomic statistics
 
 Script:
 
-05_admixture_mapping_selection_scan/Calculation_selection_signals.R
+06_admixture_mapping_selection_scan/Calculation_selection_signals.R
 
 Input:
 
@@ -409,11 +490,11 @@ Calculation of window-based population genomic statistics, including Fst, Dxy, n
 
 ---
 
-## Step 5.3 XP-EHH analysis
+#### Step 6.3 XP-EHH analysis
 
 Script:
 
-05_admixture_mapping_selection_scan/Calculation_XPEHH.R
+06_admixture_mapping_selection_scan/Calculation_XPEHH.R
 
 Input:
 
@@ -430,7 +511,7 @@ XP-EHH analysis to detect genomic regions showing evidence of divergent selectio
 
 ---
 
-## Step 5.4 Outlier detection
+#### Step 6.4 Outlier detection
 
 Script:
 
@@ -457,7 +538,7 @@ Detection of genomic outlier regions associated with admixture mapping and popul
 
 ---
 
-## Step 5.5 Integration of admixture mapping and selection signals
+#### Step 6.5 Integration of admixture mapping and selection signals
 
 Script:
 
@@ -481,15 +562,15 @@ Integration of admixture mapping hits with selection-scan outliers and SNP annot
 
 ---
 
-# 6. Genetic coupling analyses
+## 7. Genetic coupling analyses
 
 This module evaluates genetic coupling among loci associated with different trait axes.
 
-## Main pipeline
+#### Main pipeline
 
 Script:
 
-06_genetic_coupling/Run_genetic_coupling.sh
+07_genetic_coupling/Run_genetic_coupling.sh
 
 Input:
 
@@ -513,7 +594,7 @@ Description:
 
 Evaluates genetic coupling among trait-associated loci by comparing inter-chromosomal linkage disequilibrium (ICLD) among trade-off-associated loci against background expectations.
 
-### Internal scripts
+#### Internal scripts
 
 assign_trait_maxpc.py
 
@@ -529,15 +610,15 @@ extract_ld_pairs.py
 
 ---
 
-# 7. Additional analyses and utility scripts
+## 8. Additional analyses and utility scripts
 
 This directory contains supplementary analyses and utility scripts used in the manuscript. The scripts are largely independent and are not intended to be executed as a single analytical pipeline.
 
-## Local genomic cline fitting
+#### Local genomic cline fitting
 
 Script:
 
-07_other_scripts/Local_cline_fit.R
+08_other_scripts/Local_cline_fit.R
 
 Input:
 
@@ -554,11 +635,11 @@ Estimation of local genomic cline parameters for ancestry-informative markers.
 
 ---
 
-## Parallel execution of local cline analyses
+#### Parallel execution of local cline analyses
 
 Script:
 
-07_other_scripts/Run_local_clines_parallel.sh
+08_other_scripts/Run_local_clines_parallel.sh
 
 Input:
 
@@ -574,11 +655,11 @@ Parallel execution of local genomic cline analyses.
 
 ---
 
-## Comparison of local cline parameters
+#### Comparison of local cline parameters
 
 Script:
 
-07_other_scripts/Compare_local_cline.R
+08_other_scripts/Compare_local_cline.R
 
 Input:
 
@@ -595,11 +676,11 @@ Compares local cline parameters between focal loci and background loci.
 
 ---
 
-## Comparison of Fst and Dxy
+#### Comparison of Fst and Dxy
 
 Script:
 
-07_other_scripts/Compare_fst_dxy.R
+08_other_scripts/Compare_fst_dxy.R
 
 Input:
 
@@ -617,11 +698,11 @@ Compares population differentiation and sequence divergence between GWAS outlier
 
 ---
 
-## Trait imputation
+#### Trait imputation
 
 Script:
 
-07_other_scripts/Trait_imputation.R
+08_other_scripts/Trait_imputation.R
 
 Input:
 
@@ -637,11 +718,11 @@ Imputation of missing trait values prior to downstream trait analyses.
 
 ---
 
-## Leaf shape analysis
+#### Leaf shape analysis
 
 Script:
 
-07_other_scripts/Run_leaf_EFA.R
+08_other_scripts/Run_leaf_EFA.R
 
 Input:
 
@@ -659,6 +740,6 @@ Elliptic Fourier analysis of leaf outline coordinates after filtering low-qualit
 
 ---
 
-# Notes
+#### Notes
 
 The scripts are organized according to the main analytical modules of the manuscript. Some scripts require processed input files deposited in Dryad, whereas raw read processing starts from sequencing data deposited in DDBJ. Intermediate temporary files generated during script execution are not exhaustively listed here. These processed datasets allow reproduction of representative analyses on a standard desktop computer without reprocessing raw sequencing data from DDBJ.

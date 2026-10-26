@@ -3,7 +3,7 @@
 Analysis scripts associated with:
 
 Ito et al. (in prep.)
-*Molecular evolutionary evidence for coexistence within oak hybrid zones.*
+*Selection maintains genetic coupling of functional trait trade-offs despite gene flow in an oak hybrid zone.*
 
 This repository contains scripts used for population genomic, phenotypic, and statistical analyses described in the manuscript.
 
@@ -13,32 +13,45 @@ Raw sequencing reads have been deposited in DDBJ under BioProject PRJDB40283 and
 
 Detailed analytical procedures are described in workflow.md.
 
-Quercus_climate.csv combines occurrence data from the National Survey on the Natural Environment and climate variables from the NARO Agro-Meteorological Grid Square Data.
+> [!CAUTION]
+> Third-party occurrence data from the Forestry Agency of Japan and climate data from the Agro-Meteorological Grid Square Data, NARO (AMGSDS), are not distributed with this repository. Users must obtain these data directly from the respective providers and comply with the applicable terms of use. Raw data and derived data subject to redistribution restrictions must not be committed to this repository. AMD_Tools4.py must be obtained separately from the provider; do not commit this file or authentication information, including user IDs, passwords, tokens, and MFA codes. See [fetch_climate_occurrence.md](01_niche_differentiation_co-occurrence/fetch_climate_occurrence.md) for data acquisition and reconstruction of the analysis input, Quercus_climate.csv.
 
 ---
 
 ## Repository structure
 
-- 01_variant_calling/
-- 02_population_structure_hybridisation/
-- 03_seedling_performance/
-- 04_tradeoff/
-- 05_admixture_mapping_selection_scan/
-- 06_genetic_coupling/
-- 07_other_scripts/
+- 01_niche_differentiation_co-occurrence/
+- 02_variant_calling/
+- 03_population_structure_hybridisation/
+- 04_seedling_performance/
+- 05_tradeoff/
+- 06_admixture_mapping_selection_scan/
+- 07_genetic_coupling/
+- 08_other_scripts/
 
 A detailed description of each module is provided below.
 
 ---
 
-#### 01_variant_calling/  
+#### 01_niche_differentiation_co-occurrence/
+  Scripts for preparing occurrence and climate data and analysing climatic niche differentiation, niche overlap, and local co-occurrence.
+- **fetch_climate_occurrence.md**:
+  Instructions for obtaining third-party data and reconstructing the analysis input locally.
+- **Build_occurrence_input.R**:
+  Preparation of plot-level presence–absence data for Q. mongolica var. crispula and Q. serrata subsp. serrata from forest inventory records, retaining plots where neither species occurs.
+- **Fetch_amgsds_climate.py**:
+  Retrieval of daily AMGSDS climate data, calculation of annual summaries and multi-year means, and integration with plot-level occurrence data.
+- **Climate_sfJSDM.R**:
+  Spatial joint species distribution modelling, availability-corrected PCA-env niche overlap analysis, and quantification of co-occurrence coverage within the shared climatic niche.
+
+#### 02_variant_calling/  
   Scripts for variant calling, filtering, and genotype imputation.
 - **Variantcalling_imputation.sh**:
   Pipeline for SNP calling and genotype imputation.
 - **fix-fcgene2.py**:
   Utility script used to correct fcGENE output format.
   
-#### 02_population_structure_hybridisation/  
+#### 03_population_structure_hybridisation/  
   Scripts for genomic cline analyses and hybrid index inference.
 - **Genomic_cline_prep.R**:
   Preparation of genotype and metadata for cline analysis.
@@ -49,7 +62,7 @@ A detailed description of each module is provided below.
 - **Genomic_cline_hzar_elevation.R**:
   Genomic cline modelling along elevation using the HZAR framework.
 
-#### 03_seedling_performance/  
+#### 04_seedling_performance/  
   Analyses of seedling performance traits as a function of hybrid index and environmental variables.
 - **Seedling_performance_prep.R**:
   Data preparation for seedling performance analyses.
@@ -64,7 +77,7 @@ A detailed description of each module is provided below.
 - **Gsw_HI.R**:
   Stomatal conductance vs hybrid index.
 
-#### 04_tradeoff/  
+#### 05_tradeoff/  
 Trait correlation and trade-off analyses.
 - **DryWeight_traitPCA.R**:
   PCA of biomass allocation traits.
@@ -77,7 +90,7 @@ Trait correlation and trade-off analyses.
 - **TraitPCA_loading.R**:
   Extraction and visualization of PCA loadings.
 
-#### 05_admixture_mapping_selection_scan/
+#### 06_admixture_mapping_selection_scan/
   Genome scans for loci associated with trait variation and signatures of selection.
 - **Run_admixture_mapping.sh**:
   Admixture mapping using GEMMA.
@@ -90,7 +103,7 @@ Trait correlation and trade-off analyses.
 - **Extract_Admap_plus1.R**:
   Integration of admixture mapping hits with other selection signals.
 
-#### 06_genetic_coupling/  
+#### 07_genetic_coupling/  
   Analyses of genetic coupling among trait-associated loci.
 - **Run_genetic_coupling.sh**:
   Main pipeline for genetic coupling analysis.
@@ -101,7 +114,7 @@ Trait correlation and trade-off analyses.
 - **extract_ld_pairs.py**:
   Extraction of LD values for sampled SNP pairs.
 
-#### 07_other_scripts/  
+#### 08_other_scripts/  
   Additional analyses and utility scripts.
 - **Compare_fst_dxy.R**:
   Comparison of Fst and Dxy between GWAS outlier regions and background.
@@ -175,14 +188,15 @@ No non-standard hardware is required.
 
 ## Analytical workflow
 
-The workflow consists of six major analytical modules:
+The workflow consists of seven major analytical modules:
 
-1. Variant calling and genotype imputation
-2. Population structure and genomic cline analyses
-3. Seedling performance analyses
-4. Trait trade-off analyses
-5. Admixture mapping and selection scans
-6. Genetic coupling analyses
+1. Climatic niche differentiation, niche overlap, and local co-occurrence 
+2. Variant calling and genotype imputation
+3. Population structure and genomic cline analyses
+4. Seedling performance analyses
+5. Trait trade-off analyses
+6. Admixture mapping and selection scans
+7. Genetic coupling analyses
 
 A detailed description of the workflow, including representative commands, input datasets, and expected outputs, is provided in workflow.md.
 
