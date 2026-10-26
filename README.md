@@ -179,6 +179,7 @@ The analyses assume that the following software are available in the user enviro
 * GEMMA (v0.98)
 * rehh (v3.2.2)
 * GenoPop (v0.9)
+* PopLDdecay (v3.45)
 * ShinyGO (v0.85)
 * bgc-hm (version not specified)
 * ggplot2 (4.0.0)
